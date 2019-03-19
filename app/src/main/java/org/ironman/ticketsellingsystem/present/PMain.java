@@ -2,8 +2,7 @@ package org.ironman.ticketsellingsystem.present;
 
 
 import org.ironman.ticketsellingsystem.MainActivity;
-import org.ironman.ticketsellingsystem.model.DataResults;
-import org.ironman.ticketsellingsystem.model.UserEntity;
+import org.ironman.ticketsellingsystem.model.UserInfo;
 import org.ironman.ticketsellingsystem.net.Api;
 
 import cn.droidlover.xdroidmvp.mvp.XPresent;
@@ -19,18 +18,17 @@ public class PMain extends XPresent<MainActivity> {
 
     public void doLogin(String mobile, String password) {
         Api.getIndexService().login(mobile, password)
-                .compose(XApi.<DataResults<UserEntity>>getApiTransformer()) //统一异常处理
-                .compose(XApi.<DataResults<UserEntity>>getScheduler()) //线程调度
-                .compose(getV().<DataResults<UserEntity>>bindToLifecycle()) //内存泄漏处理
-                .subscribe(new ApiSubscriber<DataResults<UserEntity>>() {
+                .compose(XApi.<UserInfo>getApiTransformer()) //统一异常处理
+                .compose(XApi.<UserInfo>getScheduler()) //线程调度
+                .compose(getV().<UserInfo>bindToLifecycle()) //内存泄漏处理
+                .subscribe(new ApiSubscriber<UserInfo>() {
                     @Override
-                    public void onNext(DataResults<UserEntity> userEntityDataResults) {
+                    public void onNext(UserInfo userEntityDataResults) {
                         getV().doLogin(userEntityDataResults);
                     }
                     @Override
                     protected void onFail(NetError error) {
                         getV().showError(error);
-                        getV().doLogin();
                     }
                 });
     }

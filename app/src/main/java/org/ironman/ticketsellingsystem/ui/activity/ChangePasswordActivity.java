@@ -1,14 +1,13 @@
 package org.ironman.ticketsellingsystem.ui.activity;
 
         import android.app.Activity;
-        import android.os.Bundle;
-        import android.view.View;
+import android.os.Bundle;
+import android.view.View;
 
-        import org.ironman.ticketsellingsystem.R;
-        import org.ironman.ticketsellingsystem.present.PHome;
+import org.ironman.ticketsellingsystem.R;
 
-        import cn.droidlover.xdroidmvp.mvp.XActivity;
-        import cn.droidlover.xdroidmvp.router.Router;
+import cn.droidlover.xdroidmvp.mvp.XActivity;
+import cn.droidlover.xdroidmvp.router.Router;
 
 /**
  * Created by Archer on 2019/3/17.
@@ -31,7 +30,7 @@ public class ChangePasswordActivity  extends XActivity implements View.OnClickLi
     }
 
     @Override
-    public PHome newP() {
+    public Object newP() {
         return null;
     }
 

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import org.ironman.ticketsellingsystem.R;
-import org.ironman.ticketsellingsystem.present.PHome;
 
 import cn.droidlover.xdroidmvp.mvp.XActivity;
 import cn.droidlover.xdroidmvp.router.Router;
@@ -31,7 +30,7 @@ public class ChangePersonalDataActivity extends XActivity implements View.OnClic
     }
 
     @Override
-    public PHome newP() {
+    public Object newP() {
         return null;
     }
 

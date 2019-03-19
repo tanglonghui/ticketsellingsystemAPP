@@ -1,8 +1,7 @@
 package org.ironman.ticketsellingsystem.net;
 
 
-import org.ironman.ticketsellingsystem.model.DataResults;
-import org.ironman.ticketsellingsystem.model.UserEntity;
+import org.ironman.ticketsellingsystem.model.UserInfo;
 
 import io.reactivex.Flowable;
 import retrofit2.http.Field;
@@ -21,7 +20,7 @@ public interface IndexService {
      */
     @FormUrlEncoded
     @POST("/login")
-    Flowable<DataResults<UserEntity>> login(@Field("account") String mobile,
-                                            @Field("password") String password);
+    Flowable<UserInfo> login(@Field("account") String mobile,
+                                          @Field("password") String password);
 
 }
