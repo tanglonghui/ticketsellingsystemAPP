@@ -5,5 +5,5 @@ package org.ironman.ticketsellingsystem.app;
  */
 
 public class Constans {
-    public static final String WEB_ROOT = "https://www.bbwycn.com";
+    public static final String WEB_ROOT = "http://10.0.2.2:8080";
 }

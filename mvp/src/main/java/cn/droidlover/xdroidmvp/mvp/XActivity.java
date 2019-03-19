@@ -163,4 +163,5 @@ public abstract class XActivity<P extends IPresent> extends RxAppCompatActivity 
     public void bindEvent() {
 
     }
+
 }
