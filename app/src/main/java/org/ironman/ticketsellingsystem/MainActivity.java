@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.ironman.ticketsellingsystem.app.Constans;
 import org.ironman.ticketsellingsystem.model.UserInfo;
 import org.ironman.ticketsellingsystem.present.PMain;
 import org.ironman.ticketsellingsystem.ui.activity.ForgetActivity;
@@ -70,8 +71,16 @@ public class MainActivity extends XActivity<PMain> implements View.OnClickListen
     public void doLogin(UserInfo model) {
         CommonUtil.showMsg("登录成功");
         UserInfo.DataBean mBean=model.getData();
-        sp.putString("account", mBean.getAccount());
-        sp.putString("password",mBean.getPassword());
+        sp.putInt(Constans.ID,mBean.getId());
+        sp.putString(Constans.ACCOUNT, mBean.getAccount());
+        sp.putString(Constans.PASSWORD,mBean.getPassword());
+        sp.putString(Constans.NAME,mBean.getName());
+        sp.putString(Constans.AGE,mBean.getAge());
+        sp.putString(Constans.SEX,mBean.getSex());
+        sp.putInt(Constans.ID_CARD,mBean.getIdCard());
+        sp.putString(Constans.ID_CARD_TYPE,mBean.getIdCardType());
+        sp.putInt(Constans.PHONE,mBean.getPhone());
+        sp.putString(Constans.STATE,mBean.getState());
         HomeActivity.launch(context);
     }
 

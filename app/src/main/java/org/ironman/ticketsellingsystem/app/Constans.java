@@ -6,4 +6,15 @@ package org.ironman.ticketsellingsystem.app;
 
 public class Constans {
     public static final String WEB_ROOT = "http://10.0.2.2:8080";
+
+    public static String ID="id";
+    public static String ACCOUNT="account";
+    public static String PASSWORD="password";
+    public static String NAME="name";
+    public static String AGE="age";
+    public static String SEX="sex";
+    public static String ID_CARD="idCard";
+    public static String ID_CARD_TYPE="idCardType";
+    public static String PHONE="phone";
+    public static String STATE="state";
 }

@@ -7,8 +7,8 @@ public class UserInfo implements IModel{
 
     /**
      * success : true
-     * message : 登录成功
-     * data : {"id":1,"account":"5","password":"2","name":"2","age":2,"idCard":3,"sex":"2222","phone":"2","type":"2","emal":"2","state":"1"}
+     * message : null
+     * data : {"id":1,"account":"1","password":"1","name":"张三","age":"18","sex":"男","idCard":43102119,"idCardType":"身份证","phone":1837777777,"state":"1"}
      * list : null
      * totalSize : null
      * page : null
@@ -16,7 +16,7 @@ public class UserInfo implements IModel{
      */
 
     private boolean success;
-    private String message;
+    private Object message;
     private DataBean data;
     private Object list;
     private Object totalSize;
@@ -31,11 +31,11 @@ public class UserInfo implements IModel{
         this.success = success;
     }
 
-    public String getMessage() {
+    public Object getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
+    public void setMessage(Object message) {
         this.message = message;
     }
 
@@ -102,15 +102,14 @@ public class UserInfo implements IModel{
     public static class DataBean {
         /**
          * id : 1
-         * account : 5
-         * password : 2
-         * name : 2
-         * age : 2
-         * idCard : 3
-         * sex : 2222
-         * phone : 2
-         * type : 2
-         * emal : 2
+         * account : 1
+         * password : 1
+         * name : 张三
+         * age : 18
+         * sex : 男
+         * idCard : 43102119
+         * idCardType : 身份证
+         * phone : 1837777777
          * state : 1
          */
 
@@ -118,12 +117,11 @@ public class UserInfo implements IModel{
         private String account;
         private String password;
         private String name;
-        private int age;
-        private int idCard;
+        private String age;
         private String sex;
-        private String phone;
-        private String type;
-        private String emal;
+        private int idCard;
+        private String idCardType;
+        private int phone;
         private String state;
 
         public int getId() {
@@ -158,20 +156,12 @@ public class UserInfo implements IModel{
             this.name = name;
         }
 
-        public int getAge() {
+        public String getAge() {
             return age;
         }
 
-        public void setAge(int age) {
+        public void setAge(String age) {
             this.age = age;
-        }
-
-        public int getIdCard() {
-            return idCard;
-        }
-
-        public void setIdCard(int idCard) {
-            this.idCard = idCard;
         }
 
         public String getSex() {
@@ -182,28 +172,28 @@ public class UserInfo implements IModel{
             this.sex = sex;
         }
 
-        public String getPhone() {
+        public int getIdCard() {
+            return idCard;
+        }
+
+        public void setIdCard(int idCard) {
+            this.idCard = idCard;
+        }
+
+        public String getIdCardType() {
+            return idCardType;
+        }
+
+        public void setIdCardType(String idCardType) {
+            this.idCardType = idCardType;
+        }
+
+        public int getPhone() {
             return phone;
         }
 
-        public void setPhone(String phone) {
+        public void setPhone(int phone) {
             this.phone = phone;
-        }
-
-        public String getType() {
-            return type;
-        }
-
-        public void setType(String type) {
-            this.type = type;
-        }
-
-        public String getEmal() {
-            return emal;
-        }
-
-        public void setEmal(String emal) {
-            this.emal = emal;
         }
 
         public String getState() {
