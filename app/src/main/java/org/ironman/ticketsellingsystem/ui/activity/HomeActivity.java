@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import org.ironman.ticketsellingsystem.R;
 import org.ironman.ticketsellingsystem.adapter.HomeViewPagerAdapter;
+import org.ironman.ticketsellingsystem.ui.fragment.HomeFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,10 +53,25 @@ public class HomeActivity extends XActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.fv_home:
+                contentTitle.setText("首页");
+                vpFragment.setCurrentItem(0);
+                fvHome.setSelected(true);
+                fvOrder.setSelected(false);
+                fvMy.setSelected(false);
                 break;
             case R.id.fv_order:
+                contentTitle.setText("订单");
+                vpFragment.setCurrentItem(1);
+                fvHome.setSelected(false);
+                fvOrder.setSelected(true);
+                fvMy.setSelected(false);
                 break;
             case R.id.fv_my:
+                contentTitle.setText("我的");
+                vpFragment.setCurrentItem(2);
+                fvHome.setSelected(false);
+                fvOrder.setSelected(false);
+                fvMy.setSelected(true);
                 break;
         }
     }
@@ -71,8 +87,9 @@ public class HomeActivity extends XActivity implements View.OnClickListener {
 
     private void initAdapter() {
         fragmentList.clear();
-        fragmentList.add(null);
-        fragmentList.add(null);
+        fragmentList.add(new HomeFragment());
+        fragmentList.add(new HomeFragment());
+        fragmentList.add(new HomeFragment());
         if (adapter == null) {
             adapter = new HomeViewPagerAdapter(getSupportFragmentManager(), fragmentList);
         }

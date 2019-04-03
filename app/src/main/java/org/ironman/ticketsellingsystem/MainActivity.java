@@ -44,6 +44,7 @@ public class MainActivity extends XActivity<PMain> implements View.OnClickListen
     @Override
     public void initData(Bundle savedInstanceState) {
         sp = SharedPref.getInstance(context);
+        contentTitle.setText("登录");
         tvLogin.setOnClickListener(this);
         tvRigister.setOnClickListener(this);
         tvForget.setOnClickListener(this);
@@ -88,7 +89,11 @@ public class MainActivity extends XActivity<PMain> implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_login:
-                getP().doLogin(etAccount.getText().toString(), etPassword.getText().toString());
+                if (Constans.isDebug){
+                    HomeActivity.launch(context);
+                }else {
+                    getP().doLogin(etAccount.getText().toString(), etPassword.getText().toString());
+                }
                 break;
             case R.id.tv_rigister:
                 RegisterActivity.launch(context);
