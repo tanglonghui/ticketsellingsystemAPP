@@ -102,4 +102,5 @@
     <color name="ActivityBackgroundColorWhite">@color/v180_color1</color>
     <color name="ActivityTitleBackgroundColor">@color/v180_color16</color>
     <color name="defaultSpiltLineColor">@color/v180_color3</color>
+    <color name="line_color">#eeeeee</color>
 </resources>
