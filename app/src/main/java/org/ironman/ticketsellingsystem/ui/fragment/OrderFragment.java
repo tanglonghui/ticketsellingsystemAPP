@@ -2,29 +2,30 @@ package org.ironman.ticketsellingsystem.ui.fragment;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import org.ironman.ticketsellingsystem.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class OrderFragment extends Fragment {
+import cn.droidlover.xdroidmvp.mvp.XFragment;
 
-
-    public OrderFragment() {
-        // Required empty public constructor
-    }
-
+public class OrderFragment extends XFragment {
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_order, container, false);
+    protected void oneLogin(String msg) {
+
     }
 
+    @Override
+    public void initData(Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.fragment_order;
+    }
+
+    @Override
+    public Object newP() {
+        return null;
+    }
 }

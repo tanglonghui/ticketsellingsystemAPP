@@ -46,25 +46,24 @@
             </RelativeLayout>
 
             <RelativeLayout style="@style/LayoutStyle">
-                <TextView
-                    style="@style/TextStyleSmall"
-                    android:layout_toLeftOf="@id/tv_go_date"
-                    android:layout_margin="8dp"
-                    android:text="出发日期" />
 
                 <TextView
-                    android:id="@+id/tv_go_date"
+                    android:id="@+id/tv_week"
+                    style="@style/TextStyleSmall"
+                    android:layout_centerInParent="true"
+                    android:text="周三" />
+                <TextView
+                    android:id="@+id/tv_date"
                     style="@style/TextStyleLarge"
-                    android:layout_toLeftOf="@id/tv_go_week"
+                    android:layout_toLeftOf="@id/tv_week"
                     android:layout_margin="8dp"
                     android:text="4月3日" />
 
                 <TextView
-                    android:id="@+id/tv_go_week"
                     style="@style/TextStyleSmall"
-                    android:layout_centerInParent="true"
-                    android:text="周三" />
-
+                    android:layout_toLeftOf="@id/tv_date"
+                    android:layout_margin="8dp"
+                    android:text="出发日期" />
 
                 <View
                     style="@style/LineStyle"

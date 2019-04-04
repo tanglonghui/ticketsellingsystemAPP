@@ -1,7 +1,8 @@
 package org.ironman.ticketsellingsystem;
 
-import android.app.Application;
 import android.content.Context;
+
+import org.litepal.LitePalApplication;
 
 import cn.droidlover.xdroidmvp.net.NetError;
 import cn.droidlover.xdroidmvp.net.NetProvider;
@@ -15,7 +16,11 @@ import okhttp3.OkHttpClient;
  * Created by kaisa on 2017/12/31.
  */
 
-public class App extends Application {
+/**
+ * @data created on 2019/4/4 .
+ * @describe TODO :  继承litePal jar包的application
+ */
+public class App extends LitePalApplication {
 
     private static Context context;
 

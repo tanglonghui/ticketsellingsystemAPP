@@ -12,6 +12,8 @@ import android.widget.TextView;
 import org.ironman.ticketsellingsystem.R;
 import org.ironman.ticketsellingsystem.adapter.HomeViewPagerAdapter;
 import org.ironman.ticketsellingsystem.ui.fragment.HomeFragment;
+import org.ironman.ticketsellingsystem.ui.fragment.MyFragment;
+import org.ironman.ticketsellingsystem.ui.fragment.OrderFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,8 +90,8 @@ public class HomeActivity extends XActivity implements View.OnClickListener {
     private void initAdapter() {
         fragmentList.clear();
         fragmentList.add(new HomeFragment());
-        fragmentList.add(new HomeFragment());
-        fragmentList.add(new HomeFragment());
+        fragmentList.add(new OrderFragment());
+        fragmentList.add(new MyFragment());
         if (adapter == null) {
             adapter = new HomeViewPagerAdapter(getSupportFragmentManager(), fragmentList);
         }

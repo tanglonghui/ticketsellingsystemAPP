@@ -1,13 +1,72 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="org.ironman.ticketsellingsystem.ui.fragment.MyFragment">
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
+        android:id="@+id/rl_head"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="100dp"
+        android:layout_marginTop="8dp"
+        android:background="#ffffff">
 
-</FrameLayout>
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/iv_head"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:src="@mipmap/icon_wd_toux"
+            app:civ_border_color="#d77c2c"
+            app:civ_border_width="2dp" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="30dp"
+            android:layout_toRightOf="@+id/iv_head"
+            android:text="安那"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_name"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@+id/iv_head"
+            android:text="账号：teacher"
+            android:textColor="#8d9097"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="12sp"
+            android:src="@mipmap/icon_gd" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_change_password"
+        style="@style/TextViewStyleForMy"
+        android:drawableLeft="@mipmap/icon_wd_list_xgmm"
+        android:text="修改密码"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tv_logout"
+        style="@style/TextViewStyleForMy"
+        android:drawableLeft="@mipmap/icon_wd_list_tc"
+        android:text="退出"
+        android:visibility="visible" />
+
+
+</LinearLayout>

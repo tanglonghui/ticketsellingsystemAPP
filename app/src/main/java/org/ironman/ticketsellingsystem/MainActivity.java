@@ -45,6 +45,12 @@ public class MainActivity extends XActivity<PMain> implements View.OnClickListen
     public void initData(Bundle savedInstanceState) {
         sp = SharedPref.getInstance(context);
         contentTitle.setText("登录");
+
+        String name = sp.getString(Constans.ACCOUNT, "");
+        String passwords = sp.getString(Constans.PASSWORD, "");
+        etAccount.setText(name);
+        etPassword.setText(passwords);
+
         tvLogin.setOnClickListener(this);
         tvRigister.setOnClickListener(this);
         tvForget.setOnClickListener(this);

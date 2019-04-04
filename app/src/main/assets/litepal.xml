@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--litepal配置
+dbname ：数据库名
+version：版本
+<list> : 用于设定所有的映射模型
+-->
+<litepal>
+    <dbname value="ironMan" ></dbname>
+
+    <version value="1" ></version>
+
+    <list>
+    </list>
+</litepal>
