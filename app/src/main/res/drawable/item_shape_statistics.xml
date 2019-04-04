@@ -1,5 +1,5 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-
+<!--四周描边-->
     <solid android:color="@color/app_bg" />
     <!-- 填充的颜色-->
     <!-- 描边-->

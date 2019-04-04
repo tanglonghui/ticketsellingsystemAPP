@@ -1,9 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/app_bg"
+    android:orientation="vertical"
     tools:context="org.ironman.ticketsellingsystem.ui.activity.RegisterActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <include layout="@layout/content_toolbar"></include>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/item_shape_statistics"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/et_password"
+                style="@style/EditTextStyle"
+                android:drawableLeft="@mipmap/lg_password"
+                android:hint="请输入账号" />
+
+            <View
+                style="@style/LineStyle"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp" />
+            <EditText
+                android:id="@+id/et_reset_password"
+                style="@style/EditTextStyle"
+                android:drawableLeft="@mipmap/lg_eyeon"
+                android:hint="请输入新密码" />
+
+            <View
+                style="@style/LineStyle"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp" />
+            <EditText
+                android:id="@+id/et_check_password"
+                style="@style/EditTextStyle"
+                android:drawableLeft="@mipmap/lg_check"
+                android:hint="请确认新密码" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tv_login"
+            style="@style/ButtonStyle"
+            android:layout_gravity="center"
+            android:layout_margin="16dp"
+            android:text="登录" />
+    </LinearLayout>
+
+</LinearLayout>
