@@ -33,22 +33,57 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginLeft="24dp"
                 android:layout_marginRight="24dp" />
+
             <EditText
-                android:id="@+id/et_reset_password"
+                android:id="@+id/et_password1"
                 style="@style/EditTextStyle"
-                android:drawableLeft="@mipmap/lg_eyeon"
-                android:hint="请输入新密码" />
+                android:drawableLeft="@mipmap/lg_password"
+                android:hint="请输入姓名" />
 
             <View
                 style="@style/LineStyle"
                 android:layout_alignParentBottom="true"
                 android:layout_marginLeft="24dp"
                 android:layout_marginRight="24dp" />
+
+            <EditText
+                android:id="@+id/et_password2"
+                style="@style/EditTextStyle"
+                android:drawableLeft="@mipmap/lg_password"
+                android:hint="请输入密码" />
+
+            <View
+                style="@style/LineStyle"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp" />
+
             <EditText
                 android:id="@+id/et_check_password"
                 style="@style/EditTextStyle"
                 android:drawableLeft="@mipmap/lg_check"
-                android:hint="请确认新密码" />
+                android:hint="请确认密码" />
+
+            <View
+                style="@style/LineStyle"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/idCardType"
+                android:visibility="gone"
+                />
+
+            <EditText
+                android:id="@+id/et_reset_password"
+                style="@style/EditTextStyle"
+                android:drawableLeft="@mipmap/lg_eyeon"
+                android:hint="请输入证件号" />
+
         </LinearLayout>
 
 
