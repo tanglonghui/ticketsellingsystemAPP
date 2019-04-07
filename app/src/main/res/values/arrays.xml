@@ -4,4 +4,8 @@
         <item>居民身份证</item>
         <item>港澳台身份证</item>
     </string-array>
+    <string-array name="userSex">
+        <item>男</item>
+        <item>女</item>
+    </string-array>
 </resources>
