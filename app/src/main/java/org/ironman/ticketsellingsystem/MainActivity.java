@@ -76,19 +76,24 @@ public class MainActivity extends XActivity<PMain> implements View.OnClickListen
     }
 
     public void doLogin(UserInfo model) {
-        CommonUtil.showMsg("登录成功");
-        UserInfo.DataBean mBean=model.getData();
-        sp.putInt(Constans.ID,mBean.getId());
-        sp.putString(Constans.ACCOUNT, mBean.getAccount());
-        sp.putString(Constans.PASSWORD,mBean.getPassword());
-        sp.putString(Constans.NAME,mBean.getName());
-        sp.putString(Constans.AGE,mBean.getAge());
-        sp.putString(Constans.SEX,mBean.getSex());
-        sp.putInt(Constans.ID_CARD,mBean.getIdCard());
-        sp.putString(Constans.ID_CARD_TYPE,mBean.getIdCardType());
-        sp.putInt(Constans.PHONE,mBean.getPhone());
-        sp.putString(Constans.STATE,mBean.getState());
-        HomeActivity.launch(context);
+        if (model.isSuccess()){
+            CommonUtil.showMsg("登录成功");
+            UserInfo.DataBean mBean=model.getData();
+            sp.putInt(Constans.ID,mBean.getId());
+            sp.putString(Constans.ACCOUNT, mBean.getAccount());
+            sp.putString(Constans.PASSWORD,mBean.getPassword());
+            sp.putString(Constans.NAME,mBean.getName());
+            sp.putString(Constans.AGE,mBean.getAge());
+            sp.putString(Constans.SEX,mBean.getSex());
+            sp.putString(Constans.ID_CARD,mBean.getIdCard());
+            sp.putString(Constans.ID_CARD_TYPE,mBean.getIdCardType());
+            sp.putString(Constans.PHONE,mBean.getPhone());
+            sp.putString(Constans.STATE,mBean.getState());
+            HomeActivity.launch(context);
+        }else {
+            CommonUtil.showMsg(model.getMessage());
+        }
+
     }
 
     @Override

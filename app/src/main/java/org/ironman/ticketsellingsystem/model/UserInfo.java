@@ -16,7 +16,7 @@ public class UserInfo implements IModel{
      */
 
     private boolean success;
-    private Object message;
+    private String message;
     private DataBean data;
     private Object list;
     private Object totalSize;
@@ -31,11 +31,11 @@ public class UserInfo implements IModel{
         this.success = success;
     }
 
-    public Object getMessage() {
+    public String getMessage() {
         return message;
     }
 
-    public void setMessage(Object message) {
+    public void setMessage(String message) {
         this.message = message;
     }
 
@@ -119,9 +119,9 @@ public class UserInfo implements IModel{
         private String name;
         private String age;
         private String sex;
-        private int idCard;
+        private String idCard;
         private String idCardType;
-        private int phone;
+        private String phone;
         private String state;
 
         public int getId() {
@@ -172,11 +172,11 @@ public class UserInfo implements IModel{
             this.sex = sex;
         }
 
-        public int getIdCard() {
+        public String getIdCard() {
             return idCard;
         }
 
-        public void setIdCard(int idCard) {
+        public void setIdCard(String idCard) {
             this.idCard = idCard;
         }
 
@@ -188,11 +188,11 @@ public class UserInfo implements IModel{
             this.idCardType = idCardType;
         }
 
-        public int getPhone() {
+        public String getPhone() {
             return phone;
         }
 
-        public void setPhone(int phone) {
+        public void setPhone(String phone) {
             this.phone = phone;
         }
 

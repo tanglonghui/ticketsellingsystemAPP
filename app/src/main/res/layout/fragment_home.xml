@@ -20,12 +20,14 @@
             <RelativeLayout style="@style/LayoutStyle">
 
                 <TextView
+                    android:id="@+id/tv_start_place"
                     style="@style/TextStyleLarge"
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="60dp"
                     android:text="北京" />
 
                 <TextView
+                    android:id="@+id/tv_end_place"
                     style="@style/TextStyleLarge"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="60dp"
@@ -106,10 +108,12 @@
                 android:padding="8dp">
 
                 <TextView
+                    android:id="@+id/tv_history"
                     style="@style/TextStyleSmall"
                     android:text="北京--上海" />
 
                 <TextView
+                    android:id="@+id/tv_clean"
                     style="@style/TextStyleSmall"
                     android:layout_alignParentRight="true"
                     android:text="清除记录"

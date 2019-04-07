@@ -6,7 +6,7 @@ package org.ironman.ticketsellingsystem.app;
 
 public class Constans {
     public static final String WEB_ROOT = "http://10.0.2.2:8080";
-    public static boolean isDebug = true;
+    public static boolean isDebug = false;
     public static String ID = "id";
     public static String ACCOUNT = "account";
     public static String PASSWORD = "password";
