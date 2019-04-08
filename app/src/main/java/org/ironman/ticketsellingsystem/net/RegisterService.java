@@ -15,7 +15,7 @@ import retrofit2.http.POST;
 
 public interface RegisterService {
     /**
-     * 登录
+     * 注册
      */
     @FormUrlEncoded
     @POST("/register")

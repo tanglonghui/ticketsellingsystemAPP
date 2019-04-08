@@ -21,6 +21,6 @@ public interface IndexService {
     @FormUrlEncoded
     @POST("/login")
     Flowable<UserInfo> login(@Field("account") String mobile,
-                                          @Field("password") String password);
+                             @Field("password") String password);
 
 }

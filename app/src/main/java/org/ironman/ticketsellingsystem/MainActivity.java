@@ -58,7 +58,7 @@ public class MainActivity extends XActivity<PMain> implements View.OnClickListen
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_login;
+        return R.layout.activity_main;
     }
 
     @Override

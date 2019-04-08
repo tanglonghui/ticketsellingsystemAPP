@@ -19,23 +19,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:visibility="gone"
             android:text="Iron Man Ticket Selling"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:visibility="gone" />
 
         <ImageView
             android:layout_width="90dp"
             android:layout_height="90dp"
-            android:src="@mipmap/my_logo"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:src="@mipmap/my_logo" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="火车售票"
-            android:visibility="gone"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:visibility="gone" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -54,8 +54,8 @@
                 android:id="@+id/et_password"
                 style="@style/EditTextStyle"
                 android:drawableLeft="@mipmap/login_input_mm_pre"
-                android:inputType="textPassword"
-                android:hint="请输入密码" />
+                android:hint="请输入密码"
+                android:inputType="textPassword" />
         </LinearLayout>
 
         <RelativeLayout

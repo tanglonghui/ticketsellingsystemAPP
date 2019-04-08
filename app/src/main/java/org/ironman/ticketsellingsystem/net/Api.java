@@ -1,6 +1,6 @@
 package org.ironman.ticketsellingsystem.net;
 
-import org.ironman.ticketsellingsystem.app.Constans;
+import org.ironman.ticketsellingsystem.app.MyUrls;
 
 import cn.droidlover.xdroidmvp.net.XApi;
 
@@ -10,7 +10,7 @@ import cn.droidlover.xdroidmvp.net.XApi;
 
 public class Api {
 
-    public static final String API_URL = Constans.WEB_ROOT;
+    public static final String API_URL = MyUrls.WEB_ROOT;
 
     private static IndexService indexService;
     private static RegisterService registerService;
