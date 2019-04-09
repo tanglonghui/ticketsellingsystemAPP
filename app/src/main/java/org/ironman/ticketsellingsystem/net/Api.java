@@ -14,7 +14,7 @@ public class Api {
 
     private static IndexService indexService;
     private static RegisterService registerService;
-
+    private static ForgetService forgetService;
     public static IndexService getIndexService() {
         if (indexService == null) {
             synchronized (Api.class) {
@@ -36,6 +36,16 @@ public class Api {
             }
         }
         return registerService;
+    }
+    public static ForgetService getForgotService () {
+        if (forgetService == null) {
+            synchronized (Api.class) {
+                if (forgetService == null) {
+                    forgetService = XApi.getInstance().getRetrofit(API_URL, true).create(ForgetService.class);
+                }
+            }
+        }
+        return forgetService;
     }
 
 }

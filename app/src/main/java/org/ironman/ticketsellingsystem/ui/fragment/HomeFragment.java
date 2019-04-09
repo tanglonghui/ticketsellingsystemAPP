@@ -4,7 +4,6 @@ package org.ironman.ticketsellingsystem.ui.fragment;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,7 +14,7 @@ import cn.droidlover.xdroidmvp.cache.SharedPref;
 import cn.droidlover.xdroidmvp.mvp.XFragment;
 
 
-public class HomeFragment extends XFragment implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
+public class HomeFragment extends XFragment implements View.OnClickListener {
 
     @BindView(R.id.tv_start_place)
     TextView tvStartPlace;
@@ -38,13 +37,18 @@ public class HomeFragment extends XFragment implements View.OnClickListener, Com
     @BindView(R.id.cb_is_student)
     CheckBox cbIsStudent;
     private SharedPref sp;
+    private String startPlace;
+    private String endPlace;
 
     @Override
     public void initData(Bundle savedInstanceState) {
         sp = SharedPref.getInstance(context);
-        tvStartPlace.setText(sp.getString("tvStartPlace",""));
-        cbIsFast.setOnCheckedChangeListener(this);
-        cbIsStudent.setOnCheckedChangeListener(this);
+        startPlace = sp.getString("tvStartPlace", "");
+        endPlace = sp.getString("tvEndPlace", "");
+        tvStartPlace.setText(startPlace);
+        tvEndPlace.setText(endPlace);
+        tvHistory.setText(startPlace + "--" + endPlace);
+
         tvQuery.setOnClickListener(this);
         tvClean.setOnClickListener(this);
 
@@ -67,21 +71,18 @@ public class HomeFragment extends XFragment implements View.OnClickListener, Com
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.tv_query:
+                //查询火车列表
+                if (cbIsFast.isChecked()) {
 
-    }
-
-    @Override
-    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        switch (buttonView.getId()) {
-            case R.id.cb_is_fast:
-                if (isChecked) {
+                }
+                if (cbIsStudent.isChecked()) {
 
                 }
                 break;
-            case R.id.cb_is_student:
-                if (isChecked) {
-
-                }
+            case R.id.tv_clean:
+                //清空历史记录
                 break;
         }
     }
