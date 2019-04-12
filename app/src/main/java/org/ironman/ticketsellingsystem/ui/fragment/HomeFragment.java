@@ -1,6 +1,7 @@
 package org.ironman.ticketsellingsystem.ui.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
@@ -8,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.ironman.ticketsellingsystem.R;
+import org.ironman.ticketsellingsystem.ui.activity.CityPickerActivity;
 
 import butterknife.BindView;
 import cn.droidlover.xdroidmvp.cache.SharedPref;
@@ -83,6 +85,7 @@ public class HomeFragment extends XFragment implements View.OnClickListener {
                 break;
             case R.id.tv_clean:
                 //清空历史记录
+                startActivity(new Intent(getActivity(), CityPickerActivity.class));
                 break;
         }
     }
