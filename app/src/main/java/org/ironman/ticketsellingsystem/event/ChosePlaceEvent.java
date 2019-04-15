@@ -1,5 +1,7 @@
 package org.ironman.ticketsellingsystem.event;
 
+import org.ironman.ticketsellingsystem.app.Constans;
+
 import cn.droidlover.xdroidmvp.event.IBus;
 
 /**
@@ -29,6 +31,6 @@ public class ChosePlaceEvent implements IBus.IEvent {
     private String state;
     @Override
     public int getTag() {
-        return 2;
+        return Constans.CHOSE_PLACE_EVENT;
     }
 }

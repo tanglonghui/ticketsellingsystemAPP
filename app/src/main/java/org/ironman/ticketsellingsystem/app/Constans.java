@@ -1,7 +1,8 @@
 package org.ironman.ticketsellingsystem.app;
 
 /**
- * Created by Archer on 2019/3/10.
+ * @data Created by Archer on 2019/4/15.
+ * @describe TODO : 常量类
  */
 
 public class Constans {
@@ -17,6 +18,9 @@ public class Constans {
     public static String PHONE = "phone";
     public static String STATE = "state";
 
-
+//    权限申请常量
     public static int REQ_ACCESS_FINE_LOCATION = 1001; //定位权限申请码
+
+    //Event事件常量
+    public static int CHOSE_PLACE_EVENT = 2001; //定位权限申请码
 }

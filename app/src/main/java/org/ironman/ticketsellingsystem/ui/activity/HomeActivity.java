@@ -98,7 +98,9 @@ public class HomeActivity extends XActivity implements View.OnClickListener {
         vpFragment.setAdapter(adapter);
         vpFragment.setOffscreenPageLimit(fragmentList.size());
         vpFragment.setCurrentItem(0);
-
+        fvHome.setSelected(true);
+        fvOrder.setSelected(false);
+        fvMy.setSelected(false);
     }
 
     @Override
