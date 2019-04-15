@@ -16,4 +16,7 @@ public class Constans {
     public static String ID_CARD_TYPE = "idCardType";
     public static String PHONE = "phone";
     public static String STATE = "state";
+
+
+    public static int REQ_ACCESS_FINE_LOCATION = 1001; //定位权限申请码
 }
