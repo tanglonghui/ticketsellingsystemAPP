@@ -3,6 +3,7 @@ package org.ironman.ticketsellingsystem.ui.fragment;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.icu.text.DisplayContext;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
@@ -10,6 +11,10 @@ import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.gson.Gson;
+import com.google.gson.TypeAdapter;
+import com.google.gson.reflect.TypeToken;
 
 import org.ironman.ticketsellingsystem.R;
 import org.ironman.ticketsellingsystem.event.ChosePlaceEvent;
@@ -21,11 +26,13 @@ import org.ironman.ticketsellingsystem.util.GsonUtil;
 import org.ironman.ticketsellingsystem.util.TimeUtil;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import butterknife.BindView;
 import cn.droidlover.xdroidmvp.cache.SharedPref;
 import cn.droidlover.xdroidmvp.event.BusProvider;
 import cn.droidlover.xdroidmvp.kit.Kits;
+import cn.droidlover.xdroidmvp.log.XLog;
 import cn.droidlover.xdroidmvp.mvp.XFragment;
 import io.reactivex.functions.Consumer;
 
@@ -64,7 +71,9 @@ public class HomeFragment extends XFragment implements View.OnClickListener {
         sp = SharedPref.getInstance(context);
         String history = sp.getString("history", "");
         if (!history.isEmpty()) {
+            XLog.e(history);
             historyBean = GsonUtil.getBean(history, HistoryBean.class);
+//          historyBean = new Gson().fromJson(history, new TypeToken<HistoryBean>() {}.getType());
             startPlace = historyBean.getStartPlace();
             endPlace = historyBean.getEndPlace();
             date = historyBean.getDate();
@@ -74,7 +83,7 @@ public class HomeFragment extends XFragment implements View.OnClickListener {
             endPlace = "上海";
             date = Kits.Date.getYmd(System.currentTimeMillis());
         }
-        tvDate.setText(TimeUtil.dateConver(date, "yyyy-MM-DD", "MM月DD日"));
+        tvDate.setText(TimeUtil.dateConver(date, "yyyy-MM-dd", "MM月dd日"));
         tvStartPlace.setText(startPlace);
         tvEndPlace.setText(endPlace);
         tvHistory.setText(startPlace + "--" + endPlace);
@@ -134,12 +143,13 @@ public class HomeFragment extends XFragment implements View.OnClickListener {
                 historyBean.setStartPlace(startPlace);
                 historyBean.setEndPlace(endPlace);
                 historyBean.setDate(date);
-                sp.put("history", GsonUtil.getString(historyBean));
+                historyBean.setTvDate("shit");
+                sp.putString("history", GsonUtil.getString(historyBean));
                 startActivity(intent);
                 break;
             case R.id.tv_clean:
                 //清空历史记录
-                sp.put("history", "");
+                sp.putString("history", "");
                 tvHistory.setText("");
                 break;
             case R.id.tv_start_place:
