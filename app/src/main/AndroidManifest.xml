@@ -33,6 +33,7 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -41,8 +42,9 @@
         <activity android:name=".ui.activity.ForgetActivity" />
         <activity android:name=".ui.activity.ChangePasswordActivity" />
         <activity android:name=".ui.activity.ChangePersonalDataActivity" />
-        <activity android:name=".ui.activity.PersonalDataActivity"/>
-        <activity android:name=".ui.activity.CityPickerActivity"/>
+        <activity android:name=".ui.activity.PersonalDataActivity" />
+        <activity android:name=".ui.activity.CityPickerActivity" />
+        <activity android:name=".ui.activity.TrainListActivity"></activity>
     </application>
 
 </manifest>

@@ -13,6 +13,7 @@ import android.widget.TextView;
 import org.ironman.ticketsellingsystem.R;
 import org.ironman.ticketsellingsystem.event.ChosePlaceEvent;
 import org.ironman.ticketsellingsystem.ui.activity.CityPickerActivity;
+import org.ironman.ticketsellingsystem.ui.activity.TrainListActivity;
 import org.ironman.ticketsellingsystem.util.CommonUtil;
 
 import java.util.Calendar;
@@ -101,12 +102,14 @@ public class HomeFragment extends XFragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.tv_query:
                 //查询火车列表
+                intent=new Intent(getActivity(), TrainListActivity.class);
                 if (cbIsFast.isChecked()) {
-
+                    intent.putExtra("isFast", "1");
                 }
                 if (cbIsStudent.isChecked()) {
-
+                    intent.putExtra("isStudent", "1");
                 }
+                startActivity(intent);
                 break;
             case R.id.tv_clean:
                 //清空历史记录

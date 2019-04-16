@@ -44,6 +44,10 @@ dependencies {
     //卡片布局
     //输入框验证框架
     //xrecycleview框架
+    //拼音
+    //gson
+    // compile 'com.google.code.gson:gson:2.8.5'
+    //高德地图定位
     compile 'com.bigkoo:alertview:1.0.3'
     compile 'de.hdodenhof:circleimageview:2.2.0'
     compile 'com.yanzhenjie:permission:2.0.0-rc4'
@@ -58,11 +62,7 @@ dependencies {
     compile 'com.jcodecraeer:xrecyclerview:1.5.9'
     compile 'com.android.support:support-v4:25.3.1'
     compile 'org.litepal.android:java:3.0.0'
-    //拼音
     compile 'com.belerweb:pinyin4j:2.5.0'
-    //gson
-   // compile 'com.google.code.gson:gson:2.8.5'
-    //高德地图定位
     compile 'com.amap.api:location:latest.integration'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:2.3.2'
