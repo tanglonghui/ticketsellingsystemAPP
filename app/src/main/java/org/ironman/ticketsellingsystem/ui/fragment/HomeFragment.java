@@ -106,9 +106,6 @@ public class HomeFragment extends XFragment implements View.OnClickListener {
                 if (cbIsFast.isChecked()) {
                     intent.putExtra("isFast", "1");
                 }
-                if (cbIsStudent.isChecked()) {
-                    intent.putExtra("isStudent", "1");
-                }
                 startActivity(intent);
                 break;
             case R.id.tv_clean:
