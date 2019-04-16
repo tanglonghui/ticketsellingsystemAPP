@@ -51,12 +51,15 @@ public class HomeFragment extends XFragment implements View.OnClickListener {
     private String startPlace;
     private String endPlace;
     private Intent intent;
+    private String date;
 
     @Override
     public void initData(Bundle savedInstanceState) {
         sp = SharedPref.getInstance(context);
         startPlace = sp.getString("tvStartPlace", "北京");
         endPlace = sp.getString("tvEndPlace", "上海");
+        date=sp.getString("date", "");
+        tvDate.setText(date);
         tvStartPlace.setText(startPlace);
         tvEndPlace.setText(endPlace);
         tvHistory.setText(startPlace + "--" + endPlace);
@@ -106,6 +109,9 @@ public class HomeFragment extends XFragment implements View.OnClickListener {
                 if (cbIsFast.isChecked()) {
                     intent.putExtra("isFast", "1");
                 }
+                intent.putExtra("startPlace", tvStartPlace.getText().toString());
+                intent.putExtra("endPlace", tvEndPlace.getText().toString());
+                intent.putExtra("date", date);
                 startActivity(intent);
                 break;
             case R.id.tv_clean:
@@ -139,6 +145,7 @@ public class HomeFragment extends XFragment implements View.OnClickListener {
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 //                tvDate.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
                 tvDate.setText((monthOfYear + 1) + "月" + dayOfMonth + "日");
+                date=year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
             }
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
         datePickerDialog.show();
