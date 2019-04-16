@@ -10,6 +10,7 @@ import android.widget.TextView;
 import org.ironman.ticketsellingsystem.MainActivity;
 import org.ironman.ticketsellingsystem.R;
 import org.ironman.ticketsellingsystem.ui.activity.ChangePasswordActivity;
+import org.ironman.ticketsellingsystem.ui.activity.ChangePersonalDataActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -77,7 +78,7 @@ public class MyFragment extends XFragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.rl_head:
-
+                ChangePersonalDataActivity.launch(getActivity());
                 break;
             case R.id.tv_add_pasenger:
 

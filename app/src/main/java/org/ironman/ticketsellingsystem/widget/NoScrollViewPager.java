@@ -4,7 +4,10 @@ import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-
+/**
+ * @data created on 2019/4/16
+ * @describe TODO 禁止了左右滑动的ViewPager
+ */
 public class NoScrollViewPager extends ViewPager {
     // 是否禁止 viewpager 左右滑动
     private boolean noScroll = true;

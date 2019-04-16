@@ -84,4 +84,36 @@
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">#8c8c8c</item>
     </style>
+    <!-- 我的资料 FrameLayout 统一style TextView 容器  -->
+    <style name="PersonalDataRelativeLayoutStyleContainer">
+        <item name="android:layout_marginTop">1dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">44dp</item>
+        <item name="android:maxHeight">132dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">#ffffff</item>
+    </style>
+    <!-- 我的资料 TextView 统一style  左侧文字 -->
+    <style name="PersonalDataTextViewStyleLeft">
+        <item name="android:textColor">#000000</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:gravity">left</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+    <!-- 我的资料 TextView 统一style  右侧文字 -->
+    <style name="PersonalDataTextViewStyleRight">
+        <item name="android:textColor">#8d9097</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:paddingRight">20dp</item>
+        <item name="android:gravity">right|center_vertical</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
 </resources>
