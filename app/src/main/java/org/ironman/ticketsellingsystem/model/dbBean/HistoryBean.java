@@ -6,7 +6,7 @@ import java.util.Date;
  * @data created on 2019/4/16
  * @describe TODO 保存列车查询的历史信息
  */
-public class historyBean {
+public class HistoryBean {
     /**
      * 起点
      */

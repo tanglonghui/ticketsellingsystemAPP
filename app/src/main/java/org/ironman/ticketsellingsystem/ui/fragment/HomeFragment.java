@@ -4,6 +4,7 @@ package org.ironman.ticketsellingsystem.ui.fragment;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
@@ -12,15 +13,19 @@ import android.widget.TextView;
 
 import org.ironman.ticketsellingsystem.R;
 import org.ironman.ticketsellingsystem.event.ChosePlaceEvent;
+import org.ironman.ticketsellingsystem.model.dbBean.HistoryBean;
 import org.ironman.ticketsellingsystem.ui.activity.CityPickerActivity;
 import org.ironman.ticketsellingsystem.ui.activity.TrainListActivity;
 import org.ironman.ticketsellingsystem.util.CommonUtil;
+import org.ironman.ticketsellingsystem.util.GsonUtil;
+import org.ironman.ticketsellingsystem.util.TimeUtil;
 
 import java.util.Calendar;
 
 import butterknife.BindView;
 import cn.droidlover.xdroidmvp.cache.SharedPref;
 import cn.droidlover.xdroidmvp.event.BusProvider;
+import cn.droidlover.xdroidmvp.kit.Kits;
 import cn.droidlover.xdroidmvp.mvp.XFragment;
 import io.reactivex.functions.Consumer;
 
@@ -50,16 +55,26 @@ public class HomeFragment extends XFragment implements View.OnClickListener {
     private SharedPref sp;
     private String startPlace;
     private String endPlace;
-    private Intent intent;
     private String date;
+    private Intent intent;
+    private HistoryBean historyBean;
 
     @Override
     public void initData(Bundle savedInstanceState) {
         sp = SharedPref.getInstance(context);
-        startPlace = sp.getString("tvStartPlace", "北京");
-        endPlace = sp.getString("tvEndPlace", "上海");
-        date=sp.getString("date", "");
-        tvDate.setText(date);
+        String history = sp.getString("history", "");
+        if (!history.isEmpty()) {
+            historyBean = GsonUtil.getBean(history, HistoryBean.class);
+            startPlace = historyBean.getStartPlace();
+            endPlace = historyBean.getEndPlace();
+            date = historyBean.getDate();
+        } else {
+            historyBean = new HistoryBean();
+            startPlace = "北京";
+            endPlace = "上海";
+            date = Kits.Date.getYmd(System.currentTimeMillis());
+        }
+        tvDate.setText(TimeUtil.dateConver(date, "yyyy-MM-DD", "MM月DD日"));
         tvStartPlace.setText(startPlace);
         tvEndPlace.setText(endPlace);
         tvHistory.setText(startPlace + "--" + endPlace);
@@ -105,17 +120,27 @@ public class HomeFragment extends XFragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.tv_query:
                 //查询火车列表
-                intent=new Intent(getActivity(), TrainListActivity.class);
+                startPlace = tvStartPlace.getText().toString();
+                endPlace = tvEndPlace.getText().toString();
+
+                intent = new Intent(getActivity(), TrainListActivity.class);
                 if (cbIsFast.isChecked()) {
                     intent.putExtra("isFast", "1");
                 }
-                intent.putExtra("startPlace", tvStartPlace.getText().toString());
-                intent.putExtra("endPlace", tvEndPlace.getText().toString());
+                intent.putExtra("startPlace", startPlace);
+                intent.putExtra("endPlace", endPlace);
                 intent.putExtra("date", date);
+                //保存历史记录
+                historyBean.setStartPlace(startPlace);
+                historyBean.setEndPlace(endPlace);
+                historyBean.setDate(date);
+                sp.put("history", GsonUtil.getString(historyBean));
                 startActivity(intent);
                 break;
             case R.id.tv_clean:
                 //清空历史记录
+                sp.put("history", "");
+                tvHistory.setText("");
                 break;
             case R.id.tv_start_place:
                 //选择起点
@@ -145,7 +170,7 @@ public class HomeFragment extends XFragment implements View.OnClickListener {
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 //                tvDate.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
                 tvDate.setText((monthOfYear + 1) + "月" + dayOfMonth + "日");
-                date=year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
+                date = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
             }
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
         datePickerDialog.show();
