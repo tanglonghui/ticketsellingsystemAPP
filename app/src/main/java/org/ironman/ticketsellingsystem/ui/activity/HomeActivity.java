@@ -83,6 +83,7 @@ public class HomeActivity extends XActivity implements View.OnClickListener {
         fvHome.setOnClickListener(this);
         fvOrder.setOnClickListener(this);
         fvMy.setOnClickListener(this);
+        contentBack.setVisibility(View.INVISIBLE);
         initAdapter();
 
     }

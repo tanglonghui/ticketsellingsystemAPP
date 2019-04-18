@@ -14,7 +14,6 @@
         android:layout_marginLeft="20dp"
         android:drawableLeft="@drawable/ic_arrow_back"
         android:drawablePadding="4dp"
-        android:visibility="gone"
         android:text="返回"
         />
 <TextView
