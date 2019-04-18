@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:background="@drawable/item_shape_statistics"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <TextView
+            android:id="@+id/tv_train_card"
+            style="@style/TextStyleLarge"
+            android:layout_weight="1"
+            android:text="Gt520" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_start_place"
+                style="@style/TextStyleLarge"
+                android:layout_width="match_parent"
+                android:text="北京" />
+
+            <TextView
+                android:id="@+id/tv_start_time"
+                style="@style/TextStyleSmall"
+                android:layout_width="match_parent"
+                android:text="1:12"
+                android:textColor="@color/colorPrimary" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="25dp"
+            android:layout_weight="2"
+            android:src="@mipmap/my_arrow" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_end_place"
+                style="@style/TextStyleLarge"
+                android:layout_width="match_parent"
+                android:text="长沙" />
+
+            <TextView
+                android:id="@+id/tv_end_time"
+                style="@style/TextStyleSmall"
+                android:layout_width="match_parent"
+                android:text="13:20"
+                android:textColor="@color/colorPrimary" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="12dp"
+        android:padding="12dp">
+
+        <TextView
+            android:id="@+id/tv_order_id"
+            style="@style/TextStyleSmall"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:text="订单号" />
+
+        <TextView
+            android:id="@+id/tv_pasenger"
+            style="@style/TextStyleSmall"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:text="乘客" />
+
+        <TextView
+            android:id="@+id/tv_jump"
+            style="@style/TextStyleSmall"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:text="前往支付"
+            android:textColor="@color/colorPrimary" />
+    </LinearLayout>
+
+</LinearLayout>
