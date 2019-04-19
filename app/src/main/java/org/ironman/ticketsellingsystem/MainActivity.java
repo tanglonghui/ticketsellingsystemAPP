@@ -45,7 +45,7 @@ public class MainActivity extends XActivity<PMain> implements View.OnClickListen
     public void initData(Bundle savedInstanceState) {
         sp = SharedPref.getInstance(context);
         contentTitle.setText("登录");
-
+        contentBack.setVisibility(View.INVISIBLE);
         String name = sp.getString(Constans.ACCOUNT, "");
         String passwords = sp.getString(Constans.PASSWORD, "");
         etAccount.setText(name);
@@ -76,21 +76,21 @@ public class MainActivity extends XActivity<PMain> implements View.OnClickListen
     }
 
     public void doLogin(UserInfo model) {
-        if (model.isSuccess()){
+        if (model.isSuccess()) {
             CommonUtil.showMsg("登录成功");
-            UserInfo.DataBean mBean=model.getData();
-            sp.putInt(Constans.ID,mBean.getId());
+            UserInfo.DataBean mBean = model.getData();
+            sp.putInt(Constans.ID, mBean.getId());
             sp.putString(Constans.ACCOUNT, mBean.getAccount());
-            sp.putString(Constans.PASSWORD,mBean.getPassword());
-            sp.putString(Constans.NAME,mBean.getName());
-            sp.putString(Constans.AGE,mBean.getAge());
-            sp.putString(Constans.SEX,mBean.getSex());
-            sp.putString(Constans.ID_CARD,mBean.getIdCard());
-            sp.putString(Constans.ID_CARD_TYPE,mBean.getIdCardType());
-            sp.putString(Constans.PHONE,mBean.getPhone());
-            sp.putString(Constans.STATE,mBean.getState());
+            sp.putString(Constans.PASSWORD, mBean.getPassword());
+            sp.putString(Constans.NAME, mBean.getName());
+            sp.putString(Constans.AGE, mBean.getAge());
+            sp.putString(Constans.SEX, mBean.getSex());
+            sp.putString(Constans.ID_CARD, mBean.getIdCard());
+            sp.putString(Constans.ID_CARD_TYPE, mBean.getIdCardType());
+            sp.putString(Constans.PHONE, mBean.getPhone());
+            sp.putString(Constans.STATE, mBean.getState());
             HomeActivity.launch(context);
-        }else {
+        } else {
             CommonUtil.showMsg(model.getMessage());
         }
 
@@ -100,9 +100,9 @@ public class MainActivity extends XActivity<PMain> implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_login:
-                if (Constans.isDebug){
+                if (Constans.isDebug) {
                     HomeActivity.launch(context);
-                }else {
+                } else {
                     getP().doLogin(etAccount.getText().toString(), etPassword.getText().toString());
                 }
                 break;

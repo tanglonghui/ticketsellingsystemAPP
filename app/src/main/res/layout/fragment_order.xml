@@ -24,7 +24,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="未支付"
-                android:textColor="#ffffff"
+                android:textColor="@color/x_red"
                 android:textSize="16sp" />
 
             <TextView
