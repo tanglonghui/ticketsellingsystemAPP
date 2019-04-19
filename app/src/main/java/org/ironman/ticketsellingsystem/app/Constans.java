@@ -6,7 +6,7 @@ package org.ironman.ticketsellingsystem.app;
  */
 
 public class Constans {
-    public static boolean isDebug = false;
+    public static boolean isDebug = true;
     public static String ID = "id";
     public static String ACCOUNT = "account";
     public static String PASSWORD = "password";
