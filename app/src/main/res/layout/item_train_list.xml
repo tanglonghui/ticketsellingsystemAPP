@@ -2,15 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-android:background="@drawable/item_shape_statistics"
     android:layout_margin="8dp"
+    android:background="@drawable/item_shape_statistics"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="12dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="12dp">
 
         <TextView
             android:id="@+id/tv_train_card"
@@ -39,15 +39,15 @@ android:background="@drawable/item_shape_statistics"
         </LinearLayout>
 
         <ImageView
-            android:layout_weight="2"
             android:layout_width="50dp"
             android:layout_height="25dp"
+            android:layout_weight="2"
             android:src="@mipmap/my_arrow" />
 
         <LinearLayout
-            android:layout_weight="2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="2"
             android:orientation="vertical">
 
             <TextView
@@ -64,14 +64,15 @@ android:background="@drawable/item_shape_statistics"
                 android:textColor="@color/colorPrimary" />
         </LinearLayout>
     </LinearLayout>
-<view
-    style="@style/LineStyle"/>
+
+    <!--<View style="@style/LineStyle" />-->
+
     <LinearLayout
-        android:padding="12dp"
-        android:layout_marginLeft="24dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_marginLeft="24dp"
+        android:orientation="horizontal"
+        android:padding="12dp">
 
         <TextView
             android:id="@+id/tv_business"

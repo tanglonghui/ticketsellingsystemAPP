@@ -32,6 +32,7 @@ public class TrainListAdapter extends RecyclerAdapter<String, TrainListAdapter.V
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+//        holder.tvSecond.setText("1");
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
