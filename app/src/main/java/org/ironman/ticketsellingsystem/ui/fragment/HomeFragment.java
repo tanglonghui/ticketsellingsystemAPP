@@ -3,30 +3,22 @@ package org.ironman.ticketsellingsystem.ui.fragment;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.icu.text.DisplayContext;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
-import com.google.gson.TypeAdapter;
-import com.google.gson.reflect.TypeToken;
-
 import org.ironman.ticketsellingsystem.R;
 import org.ironman.ticketsellingsystem.event.ChosePlaceEvent;
 import org.ironman.ticketsellingsystem.model.dbBean.HistoryBean;
 import org.ironman.ticketsellingsystem.ui.activity.CityPickerActivity;
 import org.ironman.ticketsellingsystem.ui.activity.TrainListActivity;
-import org.ironman.ticketsellingsystem.util.CommonUtil;
 import org.ironman.ticketsellingsystem.util.GsonUtil;
 import org.ironman.ticketsellingsystem.util.TimeUtil;
 
 import java.util.Calendar;
-import java.util.Date;
 
 import butterknife.BindView;
 import cn.droidlover.xdroidmvp.cache.SharedPref;
@@ -134,7 +126,9 @@ public class HomeFragment extends XFragment implements View.OnClickListener {
 
                 intent = new Intent(getActivity(), TrainListActivity.class);
                 if (cbIsFast.isChecked()) {
-                    intent.putExtra("isFast", "1");
+                    intent.putExtra("isFast", "g");
+                }else {
+                    intent.putExtra("isFast", "");
                 }
                 intent.putExtra("startPlace", startPlace);
                 intent.putExtra("endPlace", endPlace);

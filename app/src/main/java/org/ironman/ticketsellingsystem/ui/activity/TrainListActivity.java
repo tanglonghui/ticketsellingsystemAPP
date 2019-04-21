@@ -10,7 +10,8 @@ import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import org.ironman.ticketsellingsystem.R;
 import org.ironman.ticketsellingsystem.adapter.TrainListAdapter;
 import org.ironman.ticketsellingsystem.app.Constans;
-import org.ironman.ticketsellingsystem.model.ContentInfo;
+import org.ironman.ticketsellingsystem.model.TrainInfo;
+import org.ironman.ticketsellingsystem.present.PTrainList;
 import org.ironman.ticketsellingsystem.util.CommonUtil;
 
 import java.util.ArrayList;
@@ -18,7 +19,13 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import cn.droidlover.xdroidmvp.mvp.XActivity;
 
-public class TrainListActivity extends XActivity implements View.OnClickListener {
+/**
+ * @data Created by Archer on 2019/4/21.
+ * @describe TODO : 火车查询结果界面
+ */
+
+
+public class TrainListActivity extends XActivity<PTrainList> implements View.OnClickListener {
 
     @BindView(R.id.content_back)
     TextView contentBack;
@@ -27,7 +34,7 @@ public class TrainListActivity extends XActivity implements View.OnClickListener
     @BindView(R.id.xv_recycler)
     XRecyclerView xvRecycler;
     TrainListAdapter adapter;
-    private ArrayList<String> mdata;
+    private ArrayList<TrainInfo.ListEntity> mdata;
     private String startPlace;
     private String endPlace;
     private String date;
@@ -59,17 +66,19 @@ public class TrainListActivity extends XActivity implements View.OnClickListener
         xvRecycler.setAdapter(adapter);
         if (Constans.isDebug) {
             if (mdata == null)
-                mdata = new ArrayList<>();
+                mdata = new ArrayList<TrainInfo.ListEntity>();
             for (int i = 0; i < 8; i++) {
-                mdata.add("asa" + i);
+                mdata.add(null);
             }
             adapter.setData(mdata);
+        }else {
+            getP().getTrainList(startPlace,endPlace,date,isFast );
         }
         xvRecycler.setLoadingMoreEnabled(false);
         xvRecycler.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
-
+                getP().getTrainList(startPlace,endPlace,date,isFast );
             }
 
             @Override
@@ -85,8 +94,8 @@ public class TrainListActivity extends XActivity implements View.OnClickListener
     }
 
     @Override
-    public Object newP() {
-        return null;
+    public PTrainList newP() {
+        return new PTrainList();
     }
 
     @Override
@@ -98,10 +107,10 @@ public class TrainListActivity extends XActivity implements View.OnClickListener
         }
     }
 
-    public void data2view(ContentInfo data) {
+    public void data2view(TrainInfo data) {
         xvRecycler.refreshComplete();
         if (data.isSuccess()) {
-            adapter.setData((String[]) data.getList());
+            adapter.setData(data.getList());
         } else {
             CommonUtil.showMsg(data.getMessage());
         }

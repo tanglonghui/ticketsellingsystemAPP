@@ -15,6 +15,8 @@ public class Api {
     private static IndexService indexService;
     private static RegisterService registerService;
     private static ForgetService forgetService;
+    private static TrainListService trainListService;
+
     public static IndexService getIndexService() {
         if (indexService == null) {
             synchronized (Api.class) {
@@ -37,7 +39,8 @@ public class Api {
         }
         return registerService;
     }
-    public static ForgetService getForgotService () {
+
+    public static ForgetService getForgotService() {
         if (forgetService == null) {
             synchronized (Api.class) {
                 if (forgetService == null) {
@@ -46,6 +49,17 @@ public class Api {
             }
         }
         return forgetService;
+    }
+
+    public static TrainListService getTrainListService() {
+        if (trainListService == null) {
+            synchronized (Api.class) {
+                if (trainListService == null) {
+                    trainListService = XApi.getInstance().getRetrofit(API_URL, true).create(TrainListService.class);
+                }
+            }
+        }
+        return trainListService;
     }
 
 }

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.ironman.ticketsellingsystem.R;
+import org.ironman.ticketsellingsystem.model.TrainInfo;
 
 import butterknife.BindView;
 import cn.droidlover.xdroidmvp.kit.KnifeKit;
@@ -18,7 +19,7 @@ import cn.droidlover.xrecyclerview.RecyclerAdapter;
  * @describe TODO  查询火车列表适配器
  */
 
-public class TrainListAdapter extends RecyclerAdapter<String, TrainListAdapter.ViewHolder> {
+public class TrainListAdapter extends RecyclerAdapter<TrainInfo.ListEntity, TrainListAdapter.ViewHolder> {
 
     public TrainListAdapter(Context context) {
         super(context);
@@ -33,6 +34,10 @@ public class TrainListAdapter extends RecyclerAdapter<String, TrainListAdapter.V
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 //        holder.tvSecond.setText("1");
+        TrainInfo.ListEntity bean=data.get(position);
+        holder.tvStartPlace.setText(bean.getStartPlace());
+        holder.tvEndPlace.setText(bean.getEndPlace());
+        holder.tvStartTime.setText(bean.getStartTime());
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
