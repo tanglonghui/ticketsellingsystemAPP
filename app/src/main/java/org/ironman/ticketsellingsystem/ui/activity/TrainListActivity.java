@@ -16,7 +16,9 @@ import org.ironman.ticketsellingsystem.app.Constans;
 import org.ironman.ticketsellingsystem.model.TrainInfo;
 import org.ironman.ticketsellingsystem.present.PTrainList;
 import org.ironman.ticketsellingsystem.util.CommonUtil;
+import org.ironman.ticketsellingsystem.util.TimeUtil;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -119,13 +121,18 @@ public class TrainListActivity extends XActivity<PTrainList> implements View.OnC
                 finish();
                 break;
             case R.id.tv_last:
-//                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//                Date sDate = sdf.parse(date);
+                date = TimeUtil.stampToDateAndDown(date, "yyyy-MM-dd");
+                tvDate.setText(TimeUtil.dateConver(date, "yyyy-MM-dd", "MM月dd日"));
+                getP().getTrainList(startPlace, endPlace, date, isFast);
                 break;
             case R.id.tv_date:
                 showDatePickDlg();
+                getP().getTrainList(startPlace, endPlace, date, isFast);
                 break;
             case R.id.tv_next:
+                date = TimeUtil.stampToDateAndUp(date, "yyyy-MM-dd");
+                tvDate.setText(TimeUtil.dateConver(date, "yyyy-MM-dd", "MM月dd日"));
+                getP().getTrainList(startPlace, endPlace, date, isFast);
                 break;
         }
     }

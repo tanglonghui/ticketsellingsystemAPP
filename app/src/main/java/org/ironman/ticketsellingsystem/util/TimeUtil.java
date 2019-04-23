@@ -2,7 +2,9 @@ package org.ironman.ticketsellingsystem.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * @data created on 2019/1/24.
@@ -46,6 +48,35 @@ public class TimeUtil {
         }
         return result;
     }
-
+    /*
+       * 将时间戳按指定格式转换为时间 并加一天
+       */
+    public static String stampToDateAndUp(String stamp, String format) {
+        String res;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
+        long lt = new Long(stamp);
+        Date date = new Date(lt);
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        c.add(Calendar.DAY_OF_MONTH, 1);
+        date=c.getTime();
+        res = simpleDateFormat.format(date);
+        return res;
+    }
+    /*
+      * 将时间戳按指定格式转换为时间 并减一天
+      */
+    public static String stampToDateAndDown(String stamp, String format) {
+        String res;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
+        long lt = new Long(stamp);
+        Date date = new Date(lt);
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        c.add(Calendar.DAY_OF_MONTH, -1);
+        date=c.getTime();
+        res = simpleDateFormat.format(date);
+        return res;
+    }
 
 }
