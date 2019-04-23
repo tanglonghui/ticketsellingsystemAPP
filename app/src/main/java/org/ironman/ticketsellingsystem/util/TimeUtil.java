@@ -22,6 +22,17 @@ public class TimeUtil {
         res = simpleDateFormat.format(date);
         return res;
     }
+    /*
+    * 将时间转换为时间戳
+    */
+    public static String dateToStamp(String s,String format) throws ParseException{
+        String res;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
+        Date date = simpleDateFormat.parse(s);
+        long ts = date.getTime();
+        res = String.valueOf(ts);
+        return res;
+    }
     //转换时间格式
     public static String dateConver(String str, String format1, String format2){
         SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat(format1);

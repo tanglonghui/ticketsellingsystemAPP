@@ -133,6 +133,7 @@ public class HomeFragment extends XFragment implements View.OnClickListener {
                 intent.putExtra("startPlace", startPlace);
                 intent.putExtra("endPlace", endPlace);
                 intent.putExtra("date", date);
+                intent.putExtra("tvDate", tvDate.getText().toString());
                 //保存历史记录
                 historyBean.setStartPlace(startPlace);
                 historyBean.setEndPlace(endPlace);

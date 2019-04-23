@@ -1,8 +1,11 @@
 package org.ironman.ticketsellingsystem.ui.activity;
 
+import android.app.DatePickerDialog;
+import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.TextView;
 
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
@@ -15,6 +18,8 @@ import org.ironman.ticketsellingsystem.present.PTrainList;
 import org.ironman.ticketsellingsystem.util.CommonUtil;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import butterknife.BindView;
 import cn.droidlover.xdroidmvp.mvp.XActivity;
@@ -34,6 +39,12 @@ public class TrainListActivity extends XActivity<PTrainList> implements View.OnC
     @BindView(R.id.xv_recycler)
     XRecyclerView xvRecycler;
     TrainListAdapter adapter;
+    @BindView(R.id.tv_last)
+    TextView tvLast;
+    @BindView(R.id.tv_date)
+    TextView tvDate;
+    @BindView(R.id.tv_next)
+    TextView tvNext;
     private ArrayList<TrainInfo.ListEntity> mdata;
     private String startPlace;
     private String endPlace;
@@ -60,7 +71,7 @@ public class TrainListActivity extends XActivity<PTrainList> implements View.OnC
         startPlace = getIntent().getStringExtra("startPlace");
         endPlace = getIntent().getStringExtra("endPlace");
         date = getIntent().getStringExtra("date");
-
+        tvDate.setText(getIntent().getStringExtra("tvDate"));
         adapter = new TrainListAdapter(this);
         xvRecycler.setLayoutManager(new LinearLayoutManager(this));
         xvRecycler.setAdapter(adapter);
@@ -71,14 +82,17 @@ public class TrainListActivity extends XActivity<PTrainList> implements View.OnC
                 mdata.add(null);
             }
             adapter.setData(mdata);
-        }else {
-            getP().getTrainList(startPlace,endPlace,date,isFast );
+        } else {
+            getP().getTrainList(startPlace, endPlace, date, isFast);
         }
         xvRecycler.setLoadingMoreEnabled(false);
+        tvDate.setOnClickListener(this);
+        tvLast.setOnClickListener(this);
+        tvNext.setOnClickListener(this);
         xvRecycler.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
-                getP().getTrainList(startPlace,endPlace,date,isFast );
+                getP().getTrainList(startPlace, endPlace, date, isFast);
             }
 
             @Override
@@ -104,6 +118,15 @@ public class TrainListActivity extends XActivity<PTrainList> implements View.OnC
             case R.id.content_back:
                 finish();
                 break;
+            case R.id.tv_last:
+//                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//                Date sDate = sdf.parse(date);
+                break;
+            case R.id.tv_date:
+                showDatePickDlg();
+                break;
+            case R.id.tv_next:
+                break;
         }
     }
 
@@ -114,5 +137,21 @@ public class TrainListActivity extends XActivity<PTrainList> implements View.OnC
         } else {
             CommonUtil.showMsg(data.getMessage());
         }
+    }
+
+    //生日选择
+    protected void showDatePickDlg() {
+        Calendar calendar = Calendar.getInstance();
+        DatePickerDialog datePickerDialog = new DatePickerDialog(TrainListActivity.this, new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+//                tvDate.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+                tvDate.setText((monthOfYear + 1) + "月" + dayOfMonth + "日");
+                date = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
+            }
+        }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+        datePickerDialog.show();
+
     }
 }
