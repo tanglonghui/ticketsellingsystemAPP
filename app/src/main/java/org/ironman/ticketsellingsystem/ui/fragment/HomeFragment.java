@@ -85,6 +85,7 @@ public class HomeFragment extends XFragment implements View.OnClickListener {
         tvStartPlace.setOnClickListener(this);
         tvEndPlace.setOnClickListener(this);
         tvDate.setOnClickListener(this);
+        imageView.setOnClickListener(this);
         BusProvider.getBus().toFlowable(ChosePlaceEvent.class).subscribe(new Consumer<ChosePlaceEvent>() {
             @Override
             public void accept(ChosePlaceEvent chosePlaceEvent) throws Exception {
@@ -127,7 +128,7 @@ public class HomeFragment extends XFragment implements View.OnClickListener {
                 intent = new Intent(getActivity(), TrainListActivity.class);
                 if (cbIsFast.isChecked()) {
                     intent.putExtra("isFast", "g");
-                }else {
+                } else {
                     intent.putExtra("isFast", "");
                 }
                 intent.putExtra("startPlace", startPlace);
@@ -162,6 +163,13 @@ public class HomeFragment extends XFragment implements View.OnClickListener {
             case R.id.tv_date:
                 //选择时间
                 showDatePickDlg();
+            case R.id.imageView:
+                //交互起点终点
+                String s = startPlace;
+                startPlace = endPlace;
+                endPlace = s;
+                tvStartPlace.setText(startPlace);
+                tvEndPlace.setText(endPlace);
                 break;
         }
     }

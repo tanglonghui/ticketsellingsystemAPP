@@ -1,5 +1,6 @@
 package org.ironman.ticketsellingsystem.util;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -51,11 +52,12 @@ public class TimeUtil {
     /*
        * 将时间戳按指定格式转换为时间 并加一天
        */
-    public static String stampToDateAndUp(String stamp, String format) {
+    public static String stampToDateAndUp(String stamp, String format) throws ParseException {
         String res;
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
-        long lt = new Long(stamp);
-        Date date = new Date(lt);
+        String lt = dateToStamp(stamp,format);
+        Long l=new Long(lt);
+        Date date = new Date(l);
         Calendar c = Calendar.getInstance();
         c.setTime(date);
         c.add(Calendar.DAY_OF_MONTH, 1);
@@ -66,11 +68,12 @@ public class TimeUtil {
     /*
       * 将时间戳按指定格式转换为时间 并减一天
       */
-    public static String stampToDateAndDown(String stamp, String format) {
+    public static String stampToDateAndDown(String stamp, String format) throws ParseException {
         String res;
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
-        long lt = new Long(stamp);
-        Date date = new Date(lt);
+        String lt = dateToStamp(stamp,format);
+        Long l=new Long(lt);
+        Date date = new Date(l);
         Calendar c = Calendar.getInstance();
         c.setTime(date);
         c.add(Calendar.DAY_OF_MONTH, -1);

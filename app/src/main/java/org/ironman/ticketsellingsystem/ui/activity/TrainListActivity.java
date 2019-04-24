@@ -65,7 +65,6 @@ public class TrainListActivity extends XActivity<PTrainList> implements View.OnC
 
     @Override
     public void initData(Bundle savedInstanceState) {
-        contentTitle.setText("选择车次");
         contentBack.setVisibility(View.VISIBLE);
         contentBack.setOnClickListener(this);
         //拿到查询条件
@@ -74,6 +73,8 @@ public class TrainListActivity extends XActivity<PTrainList> implements View.OnC
         endPlace = getIntent().getStringExtra("endPlace");
         date = getIntent().getStringExtra("date");
         tvDate.setText(getIntent().getStringExtra("tvDate"));
+        contentTitle.setText(startPlace+"<>"+endPlace);
+        contentTitle.setOnClickListener(this);
         adapter = new TrainListAdapter(this);
         xvRecycler.setLayoutManager(new LinearLayoutManager(this));
         xvRecycler.setAdapter(adapter);
@@ -121,17 +122,33 @@ public class TrainListActivity extends XActivity<PTrainList> implements View.OnC
                 finish();
                 break;
             case R.id.tv_last:
-                date = TimeUtil.stampToDateAndDown(date, "yyyy-MM-dd");
+                try {
+                    date = TimeUtil.stampToDateAndDown(date, "yyyy-MM-dd");
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
                 tvDate.setText(TimeUtil.dateConver(date, "yyyy-MM-dd", "MM月dd日"));
                 getP().getTrainList(startPlace, endPlace, date, isFast);
                 break;
             case R.id.tv_date:
                 showDatePickDlg();
-                getP().getTrainList(startPlace, endPlace, date, isFast);
+
                 break;
             case R.id.tv_next:
-                date = TimeUtil.stampToDateAndUp(date, "yyyy-MM-dd");
+                try {
+                    date = TimeUtil.stampToDateAndUp(date, "yyyy-MM-dd");
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
                 tvDate.setText(TimeUtil.dateConver(date, "yyyy-MM-dd", "MM月dd日"));
+                getP().getTrainList(startPlace, endPlace, date, isFast);
+                break;
+            case R.id.content_title:
+                //交互起点终点
+                String s = startPlace;
+                startPlace = endPlace;
+                endPlace = s;
+                contentTitle.setText(startPlace+"<>"+endPlace);
                 getP().getTrainList(startPlace, endPlace, date, isFast);
                 break;
         }
@@ -156,6 +173,7 @@ public class TrainListActivity extends XActivity<PTrainList> implements View.OnC
 //                tvDate.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
                 tvDate.setText((monthOfYear + 1) + "月" + dayOfMonth + "日");
                 date = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
+                getP().getTrainList(startPlace, endPlace, date, isFast);
             }
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
         datePickerDialog.show();
