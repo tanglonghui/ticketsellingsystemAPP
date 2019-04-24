@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="org.ironman.ticketsellingsystem.ui.activity.BuyActivity">
+
+    <include layout="@layout/content_toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@drawable/item_shape_statistics"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="12dp">
+
+            <TextView
+                android:id="@+id/tv_train_card"
+                style="@style/TextStyleMiddle"
+                android:layout_weight="1"
+                android:text="Gt520" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_start_place"
+                    style="@style/TextStyleMiddle"
+                    android:layout_width="match_parent"
+                    android:text="北京" />
+
+                <TextView
+                    android:id="@+id/tv_start_time"
+                    style="@style/TextStyleSmall"
+                    android:layout_width="match_parent"
+                    android:text="1:12"
+                    android:textColor="@color/colorPrimary" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="25dp"
+                android:layout_weight="2"
+                android:src="@mipmap/my_arrow" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_end_place"
+                    style="@style/TextStyleMiddle"
+                    android:layout_width="match_parent"
+                    android:text="长沙" />
+
+                <TextView
+                    android:id="@+id/tv_end_time"
+                    style="@style/TextStyleSmall"
+                    android:layout_width="match_parent"
+                    android:text="13:20"
+                    android:textColor="@color/colorPrimary" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View style="@style/LineStyle" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/TextStyleMiddle"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:text="商务" />
+
+                <TextView
+                    android:id="@+id/tv_business"
+                    style="@style/TextStyleSmall"
+                    android:layout_weight="1"
+                    android:text="200张" />
+
+                <TextView
+                    android:id="@+id/tv_business_price"
+                    style="@style/TextStyleSmall"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:text="$200" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/TextStyleMiddle"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:text="一等" />
+
+                <TextView
+                    android:id="@+id/tv_first"
+                    style="@style/TextStyleSmall"
+                    android:layout_weight="1"
+                    android:text="100张" />
+
+                <TextView
+                    android:id="@+id/tv_first_price"
+                    style="@style/TextStyleSmall"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:text="￥20" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/TextStyleMiddle"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:text="二等" />
+
+                <TextView
+                    android:id="@+id/tv_second"
+                    style="@style/TextStyleSmall"
+                    android:layout_weight="1"
+                    android:text="30张" />
+
+                <TextView
+                    android:id="@+id/tv_second_price"
+                    style="@style/TextStyleSmall"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:text="￥20" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </LinearLayout>
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
+        android:id="@+id/xv_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_login"
+        style="@style/ButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_margin="8dp"
+        android:text="选择乘客" />
+
+    <TextView
+        android:id="@+id/tv_submit"
+        style="@style/ButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_margin="8dp"
+        android:text="提交订单" />
+</LinearLayout>

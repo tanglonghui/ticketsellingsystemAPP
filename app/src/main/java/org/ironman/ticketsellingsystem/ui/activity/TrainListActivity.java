@@ -1,6 +1,7 @@
 package org.ironman.ticketsellingsystem.ui.activity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -27,7 +28,6 @@ import butterknife.BindView;
 import cn.droidlover.xdroidmvp.kit.Kits;
 import cn.droidlover.xdroidmvp.mvp.XActivity;
 
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
 
 /**
  * @data Created by Archer on 2019/4/21.
@@ -110,6 +110,8 @@ public class TrainListActivity extends XActivity<PTrainList> implements View.OnC
             @Override
             public void OnClickListener(TrainInfo.ListEntity bean) {
                 //跳转到订票界面
+                Intent intent=new Intent(TrainListActivity.this,BuyActivity.class);
+                startActivity(intent);
             }
         });
     }
