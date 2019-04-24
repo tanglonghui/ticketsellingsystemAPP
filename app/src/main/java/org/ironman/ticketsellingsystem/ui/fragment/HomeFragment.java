@@ -15,6 +15,7 @@ import org.ironman.ticketsellingsystem.event.ChosePlaceEvent;
 import org.ironman.ticketsellingsystem.model.dbBean.HistoryBean;
 import org.ironman.ticketsellingsystem.ui.activity.CityPickerActivity;
 import org.ironman.ticketsellingsystem.ui.activity.TrainListActivity;
+import org.ironman.ticketsellingsystem.util.CommonUtil;
 import org.ironman.ticketsellingsystem.util.GsonUtil;
 import org.ironman.ticketsellingsystem.util.TimeUtil;
 
@@ -68,7 +69,7 @@ public class HomeFragment extends XFragment implements View.OnClickListener {
 //          historyBean = new Gson().fromJson(history, new TypeToken<HistoryBean>() {}.getType());
             startPlace = historyBean.getStartPlace();
             endPlace = historyBean.getEndPlace();
-            date = historyBean.getDate();
+            date = Kits.Date.getYmd(System.currentTimeMillis());
         } else {
             historyBean = new HistoryBean();
             startPlace = "北京";
@@ -186,6 +187,7 @@ public class HomeFragment extends XFragment implements View.OnClickListener {
                 date = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
             }
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
         datePickerDialog.show();
 
     }

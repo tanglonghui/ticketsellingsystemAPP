@@ -24,7 +24,10 @@ import java.util.Calendar;
 import java.util.Date;
 
 import butterknife.BindView;
+import cn.droidlover.xdroidmvp.kit.Kits;
 import cn.droidlover.xdroidmvp.mvp.XActivity;
+
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
 
 /**
  * @data Created by Archer on 2019/4/21.
@@ -73,7 +76,7 @@ public class TrainListActivity extends XActivity<PTrainList> implements View.OnC
         endPlace = getIntent().getStringExtra("endPlace");
         date = getIntent().getStringExtra("date");
         tvDate.setText(getIntent().getStringExtra("tvDate"));
-        contentTitle.setText(startPlace+"<>"+endPlace);
+        contentTitle.setText(startPlace + "<>" + endPlace);
         contentTitle.setOnClickListener(this);
         adapter = new TrainListAdapter(this);
         xvRecycler.setLayoutManager(new LinearLayoutManager(this));
@@ -123,12 +126,17 @@ public class TrainListActivity extends XActivity<PTrainList> implements View.OnC
                 break;
             case R.id.tv_last:
                 try {
-                    date = TimeUtil.stampToDateAndDown(date, "yyyy-MM-dd");
+                    if (Kits.Date.isToday(Long.parseLong(TimeUtil.dateToStamp(date, "yyyy-MM-dd")))){
+                        CommonUtil.showMsg("你想买过去的车票么？");
+                    }else {
+                        date = TimeUtil.stampToDateAndDown(date, "yyyy-MM-dd");
+                        tvDate.setText(TimeUtil.dateConver(date, "yyyy-MM-dd", "MM月dd日"));
+                        getP().getTrainList(startPlace, endPlace, date, isFast);
+                    }
+
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                tvDate.setText(TimeUtil.dateConver(date, "yyyy-MM-dd", "MM月dd日"));
-                getP().getTrainList(startPlace, endPlace, date, isFast);
                 break;
             case R.id.tv_date:
                 showDatePickDlg();
@@ -148,7 +156,7 @@ public class TrainListActivity extends XActivity<PTrainList> implements View.OnC
                 String s = startPlace;
                 startPlace = endPlace;
                 endPlace = s;
-                contentTitle.setText(startPlace+"<>"+endPlace);
+                contentTitle.setText(startPlace + "<>" + endPlace);
                 getP().getTrainList(startPlace, endPlace, date, isFast);
                 break;
         }
@@ -176,6 +184,7 @@ public class TrainListActivity extends XActivity<PTrainList> implements View.OnC
                 getP().getTrainList(startPlace, endPlace, date, isFast);
             }
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
         datePickerDialog.show();
 
     }
