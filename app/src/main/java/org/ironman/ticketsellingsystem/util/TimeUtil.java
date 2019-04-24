@@ -2,6 +2,7 @@ package org.ironman.ticketsellingsystem.util;
 
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -81,5 +82,25 @@ public class TimeUtil {
         res = simpleDateFormat.format(date);
         return res;
     }
-
+    public static String stringDateformart(String string,String format)  {
+        String result="";
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat(format);
+          result=  sdf.parse(string).toString();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+    /**
+     * 将长时间格式字符串转换为时间 yyyy-MM-dd HH:mm:ss
+     *
+     * @param strDate
+     * @return
+     */ public static Date strToDateLong(String strDate,String format) {
+        SimpleDateFormat formatter = new SimpleDateFormat(format);
+        ParsePosition pos = new ParsePosition(0);
+        Date strtodate = formatter.parse(strDate, pos);
+        return strtodate;
+    }
 }

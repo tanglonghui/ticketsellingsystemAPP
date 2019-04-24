@@ -9,9 +9,11 @@ import android.widget.TextView;
 
 import org.ironman.ticketsellingsystem.R;
 import org.ironman.ticketsellingsystem.model.TrainInfo;
+import org.ironman.ticketsellingsystem.util.TimeUtil;
 
 import butterknife.BindView;
 import cn.droidlover.xdroidmvp.kit.KnifeKit;
+import cn.droidlover.xdroidmvp.log.XLog;
 import cn.droidlover.xrecyclerview.RecyclerAdapter;
 
 /**
@@ -35,9 +37,21 @@ public class TrainListAdapter extends RecyclerAdapter<TrainInfo.ListEntity, Trai
     public void onBindViewHolder(ViewHolder holder, int position) {
 //        holder.tvSecond.setText("1");
         TrainInfo.ListEntity bean=data.get(position);
+        holder.tvTrainCard.setText(bean.getTrainCard());
         holder.tvStartPlace.setText(bean.getStartPlace());
         holder.tvEndPlace.setText(bean.getEndPlace());
-        holder.tvStartTime.setText(bean.getStartTime());
+        String startTime=bean.getStartTime();
+        String endTime=bean.getEndTime();
+        XLog.e(startTime);
+        XLog.e(endTime);
+        XLog.e(bean.getTrainTime());
+        startTime= TimeUtil.dateConver(startTime,"yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ","HH:mm");
+        endTime=TimeUtil.dateConver(endTime,"yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ","HH:mm");
+        holder.tvStartTime.setText(startTime);
+        holder.tvEndTime.setText(endTime);
+        holder.tvBusiness.setText("商务："+bean.getBusinessSeat()+"张");
+        holder.tvFirst.setText("一等："+bean.getFirstSeat()+"张");
+        holder.tvSecond.setText("二等："+bean.getSecondSeat()+"张");
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

@@ -14,7 +14,7 @@
 
         <TextView
             android:id="@+id/tv_train_card"
-            style="@style/TextStyleLarge"
+            style="@style/TextStyleMiddle"
             android:layout_weight="1"
             android:text="Gt520" />
 
@@ -26,7 +26,7 @@
 
             <TextView
                 android:id="@+id/tv_start_place"
-                style="@style/TextStyleLarge"
+                style="@style/TextStyleMiddle"
                 android:layout_width="match_parent"
                 android:text="北京" />
 
@@ -52,7 +52,7 @@
 
             <TextView
                 android:id="@+id/tv_end_place"
-                style="@style/TextStyleLarge"
+                style="@style/TextStyleMiddle"
                 android:layout_width="match_parent"
                 android:text="长沙" />
 
