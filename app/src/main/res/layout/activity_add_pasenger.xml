@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="org.ironman.ticketsellingsystem.ui.activity.MyPasengerActivity">
+   <include layout="@layout/content_toolbar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/item_shape_statistics"
+            android:orientation="vertical">
+
+
+            <EditText
+                android:id="@+id/et_name"
+                style="@style/EditTextStyle"
+                android:drawableLeft="@mipmap/lg_password"
+                android:hint="请输入姓名" />
+
+            <View
+                style="@style/LineStyle"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp" />
+            <EditText
+                android:id="@+id/et_phone"
+                style="@style/EditTextStyle"
+                android:drawableLeft="@mipmap/lg_password"
+                android:inputType="phone"
+                android:hint="请输入手机号码" />
+
+            <View
+                style="@style/LineStyle"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp" />
+
+            <EditText
+                android:id="@+id/et_card"
+                style="@style/EditTextStyle"
+                android:inputType="textPassword"
+                android:drawableLeft="@mipmap/lg_password"
+                android:hint="请输入身份证" />
+
+
+
+            <View
+                style="@style/LineStyle"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp" />
+
+            <RelativeLayout
+                style="@style/EditTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:drawableLeft="@mipmap/lg_check"
+                    android:drawablePadding="12dp"
+                    android:text="类型："
+                    android:textSize="14sp" />
+
+                <Spinner
+                    android:id="@+id/sp_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:entries="@array/userType" />
+            </RelativeLayout>
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tv_add"
+            style="@style/ButtonStyle"
+            android:layout_gravity="center"
+            android:layout_margin="16dp"
+            android:text="添加" />
+    </LinearLayout>
+
+</LinearLayout>

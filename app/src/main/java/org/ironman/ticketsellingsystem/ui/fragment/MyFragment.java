@@ -11,6 +11,7 @@ import org.ironman.ticketsellingsystem.MainActivity;
 import org.ironman.ticketsellingsystem.R;
 import org.ironman.ticketsellingsystem.ui.activity.ChangePasswordActivity;
 import org.ironman.ticketsellingsystem.ui.activity.ChangePersonalDataActivity;
+import org.ironman.ticketsellingsystem.ui.activity.MyPasengerActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -81,7 +82,7 @@ public class MyFragment extends XFragment implements View.OnClickListener {
                 ChangePersonalDataActivity.launch(getActivity());
                 break;
             case R.id.tv_add_pasenger:
-
+                MyPasengerActivity.launch(getActivity());
                 break;
             case R.id.tv_change_password:
                 ChangePasswordActivity.launch(getActivity());

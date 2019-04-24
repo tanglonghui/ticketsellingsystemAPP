@@ -45,7 +45,8 @@
         <activity android:name=".ui.activity.PersonalDataActivity" />
         <activity android:name=".ui.activity.CityPickerActivity" />
         <activity android:name=".ui.activity.TrainListActivity" />
-        <activity android:name=".ui.activity.BuyActivity"></activity>
+        <activity android:name=".ui.activity.BuyActivity" />
+        <activity android:name=".ui.activity.MyPasengerActivity"></activity>
     </application>
 
 </manifest>
