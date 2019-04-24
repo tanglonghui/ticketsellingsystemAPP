@@ -42,11 +42,11 @@ public class TrainListAdapter extends RecyclerAdapter<TrainInfo.ListEntity, Trai
         holder.tvEndPlace.setText(bean.getEndPlace());
         String startTime=bean.getStartTime();
         String endTime=bean.getEndTime();
-        XLog.e(startTime);
-        XLog.e(endTime);
-        XLog.e(bean.getTrainTime());
-        startTime= TimeUtil.dateConver(startTime,"yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ","HH:mm");
-        endTime=TimeUtil.dateConver(endTime,"yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ","HH:mm");
+//        XLog.e(startTime);
+//        XLog.e(endTime);
+//        XLog.e(bean.getTrainTime());
+//        startTime= TimeUtil.dateConver(startTime,"yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ","HH:mm");
+//        endTime=TimeUtil.dateConver(endTime,"yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ","HH:mm");
         holder.tvStartTime.setText(startTime);
         holder.tvEndTime.setText(endTime);
         holder.tvBusiness.setText("商务："+bean.getBusinessSeat()+"张");
