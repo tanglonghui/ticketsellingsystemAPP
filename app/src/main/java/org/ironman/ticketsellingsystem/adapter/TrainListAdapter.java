@@ -23,6 +23,7 @@ import cn.droidlover.xrecyclerview.RecyclerAdapter;
 
 public class TrainListAdapter extends RecyclerAdapter<TrainInfo.ListEntity, TrainListAdapter.ViewHolder> {
 
+    private ItemOnclickListener listener;
     public TrainListAdapter(Context context) {
         super(context);
     }
@@ -36,7 +37,7 @@ public class TrainListAdapter extends RecyclerAdapter<TrainInfo.ListEntity, Trai
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 //        holder.tvSecond.setText("1");
-        TrainInfo.ListEntity bean=data.get(position);
+        final TrainInfo.ListEntity bean=data.get(position);
         holder.tvTrainCard.setText(bean.getTrainCard());
         holder.tvStartPlace.setText(bean.getStartPlace());
         holder.tvEndPlace.setText(bean.getEndPlace());
@@ -52,6 +53,12 @@ public class TrainListAdapter extends RecyclerAdapter<TrainInfo.ListEntity, Trai
         holder.tvBusiness.setText("商务："+bean.getBusinessSeat()+"张");
         holder.tvFirst.setText("一等："+bean.getFirstSeat()+"张");
         holder.tvSecond.setText("二等："+bean.getSecondSeat()+"张");
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.OnClickListener(bean);
+            }
+        });
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -78,5 +85,15 @@ public class TrainListAdapter extends RecyclerAdapter<TrainInfo.ListEntity, Trai
             super(itemView);
             KnifeKit.bind(this, itemView);
         }
+    }
+    /**
+     * 定义监听
+     */
+    public interface ItemOnclickListener {
+        void OnClickListener(TrainInfo.ListEntity bean);
+    }
+
+    public void setListener(ItemOnclickListener listener) {
+        this.listener = listener;
     }
 }

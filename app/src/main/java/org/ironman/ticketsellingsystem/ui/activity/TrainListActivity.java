@@ -106,6 +106,12 @@ public class TrainListActivity extends XActivity<PTrainList> implements View.OnC
 
             }
         });
+        adapter.setListener(new TrainListAdapter.ItemOnclickListener() {
+            @Override
+            public void OnClickListener(TrainInfo.ListEntity bean) {
+                //跳转到订票界面
+            }
+        });
     }
 
     @Override
