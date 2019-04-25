@@ -49,6 +49,29 @@ public class AddPasengerActivity extends XActivity implements View.OnClickListen
 
     @Override
     protected void oneLogin(String msg) {
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.content_back:
+                finish();
+                break;
+            case R.id.content_add:
+                //添加旅客
+                break;
+            case R.id.tv_add:
+                //添加旅客
+                validator.validate();
+                break;
+
+        }
+    }
+
+    @Override
+    public void initData(Bundle savedInstanceState) {
+        contentTitle.setText("添加旅客");
         tvAdd.setOnClickListener(this);
         contentBack.setOnClickListener(this);
         spType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -71,27 +94,6 @@ public class AddPasengerActivity extends XActivity implements View.OnClickListen
         });
         validator = new Validator(this);
         validator.setValidationListener(this);
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.content_back:
-                finish();
-                break;
-            case R.id.content_add:
-                //添加旅客
-                break;
-            case R.id.tv_add:
-                //添加旅客
-                break;
-
-        }
-    }
-
-    @Override
-    public void initData(Bundle savedInstanceState) {
-        contentTitle.setText("添加旅客");
     }
 
     @Override

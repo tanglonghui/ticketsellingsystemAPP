@@ -16,6 +16,7 @@ public class Api {
     private static RegisterService registerService;
     private static ForgetService forgetService;
     private static TrainListService trainListService;
+    private static PasengerService pasengerService;
 
     public static IndexService getIndexService() {
         if (indexService == null) {
@@ -61,5 +62,14 @@ public class Api {
         }
         return trainListService;
     }
-
+    public static PasengerService getPasengerService() {
+        if (pasengerService == null) {
+            synchronized (Api.class) {
+                if (pasengerService == null) {
+                    pasengerService = XApi.getInstance().getRetrofit(API_URL, true).create(PasengerService.class);
+                }
+            }
+        }
+        return pasengerService;
+    }
 }

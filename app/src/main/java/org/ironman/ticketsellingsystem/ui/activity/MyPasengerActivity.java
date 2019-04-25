@@ -39,6 +39,7 @@ public class MyPasengerActivity extends XActivity implements View.OnClickListene
                 break;
             case R.id.content_add:
            //添加旅客
+                AddPasengerActivity.launch(this);
                 break;
         }
     }
