@@ -1,6 +1,7 @@
 package org.ironman.ticketsellingsystem.net;
 
 import org.ironman.ticketsellingsystem.model.ContentInfo;
+import org.ironman.ticketsellingsystem.model.PasengerInfo;
 
 import java.util.Map;
 
@@ -31,5 +32,5 @@ public interface PasengerService {
      */
     @FormUrlEncoded
     @POST("/myPasengerList")
-    Flowable<ContentInfo> getPasenger(@FieldMap Map<String, Object> map);
+    Flowable<PasengerInfo> getPasenger(@FieldMap Map<String, Object> map);
 }
