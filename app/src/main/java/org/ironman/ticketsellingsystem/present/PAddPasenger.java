@@ -16,13 +16,13 @@ import cn.droidlover.xdroidmvp.net.XApi;
  */
 
 public class PAddPasenger extends XPresent<AddPasengerActivity> {
-    public void addPasenger(String account, String password, String name, String sex, String phone) {
+    public void addPasenger(Integer userId, String name, String phone, String idCard, String type) {
         HashMap<String, Object> map = new HashMap<>();
-        map.put("account", account);
-        map.put("password", password);
+        map.put("userId", userId);
         map.put("name", name);
-        map.put("sex", sex);
         map.put("phone", phone);
+        map.put("idCard", idCard);
+        map.put("type", type);
         Api.getPasengerService().addPasenger(map)
                 .compose(XApi.<ContentInfo>getApiTransformer()) //统一异常处理
                 .compose(XApi.<ContentInfo>getScheduler()) //线程调度

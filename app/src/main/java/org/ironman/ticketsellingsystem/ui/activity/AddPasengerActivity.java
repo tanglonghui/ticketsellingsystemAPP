@@ -10,20 +10,24 @@ import android.widget.TextView;
 
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
+import com.mobsandgeeks.saripaar.annotation.Length;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 
 import org.ironman.ticketsellingsystem.R;
+import org.ironman.ticketsellingsystem.app.Constans;
 import org.ironman.ticketsellingsystem.model.ContentInfo;
+import org.ironman.ticketsellingsystem.present.PAddPasenger;
 import org.ironman.ticketsellingsystem.util.CommonUtil;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cn.droidlover.xdroidmvp.cache.SharedPref;
 import cn.droidlover.xdroidmvp.mvp.XActivity;
 import cn.droidlover.xdroidmvp.router.Router;
 
-public class AddPasengerActivity extends XActivity implements View.OnClickListener , Validator.ValidationListener {
+public class AddPasengerActivity extends XActivity<PAddPasenger> implements View.OnClickListener, Validator.ValidationListener {
 
 
     @BindView(R.id.content_back)
@@ -34,7 +38,7 @@ public class AddPasengerActivity extends XActivity implements View.OnClickListen
     @NotEmpty(message = "姓名不能为空")
     EditText etName;
     @BindView(R.id.et_phone)
-    @NotEmpty(message = "电话不能为空")
+    @Length(max = 11, min = 11, message = "电话为11位")
     EditText etPhone;
     @BindView(R.id.et_card)
     @NotEmpty(message = "证件号不能为空")
@@ -102,8 +106,8 @@ public class AddPasengerActivity extends XActivity implements View.OnClickListen
     }
 
     @Override
-    public Object newP() {
-        return null;
+    public PAddPasenger newP() {
+        return new PAddPasenger();
     }
 
     public static void launch(Activity activity) {
@@ -121,12 +125,18 @@ public class AddPasengerActivity extends XActivity implements View.OnClickListen
     @Override
     public void onValidationSucceeded() {
         //表单验证成功，请求网络
-//        getP().doRegister(
-//                etAccount.getText().toString(),
-//                etPassword.getText().toString(),
-//                etName.getText().toString(),
-//                sex,
-//                etPhone.getText().toString());
+        Integer id = SharedPref.getInstance(this).getInt(Constans.ID, 0);
+        if (id!=0){
+            getP().addPasenger(
+                    id,
+                    etName.getText().toString(),
+                    etPhone.getText().toString(),
+                    etCard.getText().toString(),
+                    type);
+        }else {
+            CommonUtil.showMsg("识别码异常");
+        }
+
     }
 
     @Override

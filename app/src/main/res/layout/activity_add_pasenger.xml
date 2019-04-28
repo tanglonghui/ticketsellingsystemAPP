@@ -48,7 +48,7 @@
             <EditText
                 android:id="@+id/et_card"
                 style="@style/EditTextStyle"
-                android:inputType="textPassword"
+                android:inputType="number"
                 android:drawableLeft="@mipmap/lg_password"
                 android:hint="请输入身份证" />
 
