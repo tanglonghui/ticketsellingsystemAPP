@@ -1,5 +1,6 @@
 package org.ironman.ticketsellingsystem.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import cn.droidlover.xdroidmvp.net.IModel;
@@ -103,7 +104,7 @@ public class TrainInfo implements IModel {
         return null;
     }
 
-    public class ListEntity {
+    public class ListEntity implements Serializable {
         /**
          * startPlace : 长沙
          * businessSeat : 100

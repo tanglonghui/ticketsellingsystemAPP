@@ -111,6 +111,7 @@ public class TrainListActivity extends XActivity<PTrainList> implements View.OnC
             public void OnClickListener(TrainInfo.ListEntity bean) {
                 //跳转到订票界面
                 Intent intent=new Intent(TrainListActivity.this,BuyActivity.class);
+                intent.putExtra("TrainInfoBean",bean);
                 startActivity(intent);
             }
         });
