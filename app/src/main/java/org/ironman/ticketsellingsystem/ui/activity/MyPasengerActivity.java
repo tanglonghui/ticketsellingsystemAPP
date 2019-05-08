@@ -102,6 +102,7 @@ public class MyPasengerActivity extends XActivity<PGetPasenger> implements View.
     public void data2view(PasengerInfo data) {
         if (data.isSuccess()) {
             adapter.setData(data.getList());
+            adapter.notifyDataSetChanged();
         } else {
             CommonUtil.showMsg(data.getMessage());
         }
