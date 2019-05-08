@@ -1,5 +1,6 @@
 package org.ironman.ticketsellingsystem.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import cn.droidlover.xdroidmvp.net.IModel;
@@ -104,7 +105,7 @@ public class PasengerInfo implements IModel {
         return null;
     }
 
-    public static class ListBean {
+    public static class ListBean implements Serializable{
         /**
          * id : 4
          * userId : 3

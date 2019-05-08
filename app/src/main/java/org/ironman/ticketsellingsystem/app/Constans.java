@@ -20,6 +20,8 @@ public class Constans {
 
 //    权限申请常量
     public static int REQ_ACCESS_FINE_LOCATION = 1001; //定位权限申请码
+    //    选择旅客回执码
+    public static int REQ_CHOSE_PASENGER = 1002;
 
     //Event事件常量
     public static int CHOSE_PLACE_EVENT = 2001; //定位权限申请码

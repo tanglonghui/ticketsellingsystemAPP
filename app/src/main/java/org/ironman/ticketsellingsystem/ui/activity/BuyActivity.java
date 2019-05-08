@@ -1,15 +1,14 @@
 package org.ironman.ticketsellingsystem.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.jcodecraeer.xrecyclerview.XRecyclerView;
-
 import org.ironman.ticketsellingsystem.R;
-import org.ironman.ticketsellingsystem.adapter.MyPasengerAdapter;
+import org.ironman.ticketsellingsystem.app.Constans;
+import org.ironman.ticketsellingsystem.model.PasengerInfo;
 import org.ironman.ticketsellingsystem.model.TrainInfo;
 
 import butterknife.BindView;
@@ -57,12 +56,17 @@ public class BuyActivity extends XActivity implements View.OnClickListener {
     LinearLayout lvFirst;
     @BindView(R.id.lv_second)
     LinearLayout lvSecond;
-    @BindView(R.id.xv_recycler)
-    XRecyclerView xvRecycler;
+
 
     TrainInfo.ListEntity bean;
+    PasengerInfo.ListBean pasengerBean;
+    @BindView(R.id.tv_name)
+    TextView tvName;
+    @BindView(R.id.tv_type)
+    TextView tvType;
+    @BindView(R.id.tv_card)
+    TextView tvCard;
     private String state;
-    private MyPasengerAdapter adapter;
 
     @Override
     protected void oneLogin(String msg) {
@@ -78,6 +82,8 @@ public class BuyActivity extends XActivity implements View.OnClickListener {
             case R.id.tv_submit:
                 break;
             case R.id.tv_chose:
+                Intent intent = new Intent(BuyActivity.this, ChosePasengerActivity.class);
+                startActivityForResult(intent,Constans.REQ_CHOSE_PASENGER);
                 break;
         }
     }
@@ -100,18 +106,6 @@ public class BuyActivity extends XActivity implements View.OnClickListener {
         tvFirstPrice.setText("" + bean.getFirstSeatPrice() + "￥");
         tvSecond.setText(bean.getSecondSeat() + "张");
         tvSecondPrice.setText("" + bean.getSecondSeatPrice() + "￥");
-
-        adapter = new MyPasengerAdapter(this);
-        adapter.setListener(new MyPasengerAdapter.ItemOnclickListener() {
-            @Override
-            public void OnClickListener(int position, Integer id, Integer pasengerId) {
-
-            }
-        });
-        xvRecycler.setLayoutManager(new LinearLayoutManager(this));
-        xvRecycler.setLoadingMoreEnabled(false);
-        xvRecycler.setPullRefreshEnabled(false);
-        xvRecycler.setAdapter(adapter);
     }
 
     @Override
@@ -152,6 +146,19 @@ public class BuyActivity extends XActivity implements View.OnClickListener {
                 lvFirst.setBackgroundColor(getResources().getColor(R.color.app_bg));
                 lvSecond.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
                 break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == Constans.REQ_CHOSE_PASENGER && resultCode == RESULT_OK) {
+            pasengerBean = (PasengerInfo.ListBean) data.getSerializableExtra("pasengerBean");
+            tvName.setText(pasengerBean.getName());
+            tvType.setText(pasengerBean.getType());
+            tvCard.setText(pasengerBean.getPhone());
+        }else {
+            XLog.e("异常");
         }
     }
 }
