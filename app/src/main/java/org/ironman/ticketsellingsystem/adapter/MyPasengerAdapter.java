@@ -35,7 +35,7 @@ public class MyPasengerAdapter extends RecyclerAdapter<PasengerInfo.ListBean, My
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
         final PasengerInfo.ListBean bean=data.get(position);
         holder.tvName.setText(bean.getName());
         holder.tvType.setText(bean.getType());
@@ -43,7 +43,7 @@ public class MyPasengerAdapter extends RecyclerAdapter<PasengerInfo.ListBean, My
         holder.tvDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.OnClickListener(bean.getId(),bean.getPasengerId());
+                listener.OnClickListener(position,bean.getId(),bean.getPasengerId());
             }
         });
 
@@ -67,7 +67,7 @@ public class MyPasengerAdapter extends RecyclerAdapter<PasengerInfo.ListBean, My
      * 定义监听
      */
     public interface ItemOnclickListener {
-        void OnClickListener(Integer id,Integer pasengerId);
+        void OnClickListener(int position,Integer id,Integer pasengerId);
     }
 
     public void setListener(ItemOnclickListener listener) {

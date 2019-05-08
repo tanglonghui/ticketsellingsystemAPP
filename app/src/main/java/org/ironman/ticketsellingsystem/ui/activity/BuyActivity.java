@@ -1,11 +1,15 @@
 package org.ironman.ticketsellingsystem.ui.activity;
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.jcodecraeer.xrecyclerview.XRecyclerView;
+
 import org.ironman.ticketsellingsystem.R;
+import org.ironman.ticketsellingsystem.adapter.MyPasengerAdapter;
 import org.ironman.ticketsellingsystem.model.TrainInfo;
 
 import butterknife.BindView;
@@ -53,9 +57,12 @@ public class BuyActivity extends XActivity implements View.OnClickListener {
     LinearLayout lvFirst;
     @BindView(R.id.lv_second)
     LinearLayout lvSecond;
+    @BindView(R.id.xv_recycler)
+    XRecyclerView xvRecycler;
 
     TrainInfo.ListEntity bean;
     private String state;
+    private MyPasengerAdapter adapter;
 
     @Override
     protected void oneLogin(String msg) {
@@ -67,6 +74,10 @@ public class BuyActivity extends XActivity implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.content_back:
                 finish();
+                break;
+            case R.id.tv_submit:
+                break;
+            case R.id.tv_chose:
                 break;
         }
     }
@@ -89,6 +100,18 @@ public class BuyActivity extends XActivity implements View.OnClickListener {
         tvFirstPrice.setText("" + bean.getFirstSeatPrice() + "￥");
         tvSecond.setText(bean.getSecondSeat() + "张");
         tvSecondPrice.setText("" + bean.getSecondSeatPrice() + "￥");
+
+        adapter = new MyPasengerAdapter(this);
+        adapter.setListener(new MyPasengerAdapter.ItemOnclickListener() {
+            @Override
+            public void OnClickListener(int position, Integer id, Integer pasengerId) {
+
+            }
+        });
+        xvRecycler.setLayoutManager(new LinearLayoutManager(this));
+        xvRecycler.setLoadingMoreEnabled(false);
+        xvRecycler.setPullRefreshEnabled(false);
+        xvRecycler.setAdapter(adapter);
     }
 
     @Override

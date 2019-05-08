@@ -66,7 +66,7 @@ public class MyPasengerActivity extends XActivity<PGetPasenger> implements View.
 //        adapter.setListener((Integer p)-> getP().removePasenger(id,p));
         adapter.setListener(new MyPasengerAdapter.ItemOnclickListener() {
             @Override
-            public void OnClickListener(Integer Id,Integer pasengerId) {
+            public void OnClickListener(int position,Integer Id,Integer pasengerId) {
                 getP().removePasenger(Id, pasengerId);
             }
         });
