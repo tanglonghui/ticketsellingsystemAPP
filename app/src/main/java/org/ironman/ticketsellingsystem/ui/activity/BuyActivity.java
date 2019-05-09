@@ -67,6 +67,8 @@ public class BuyActivity extends XActivity implements View.OnClickListener {
     TextView tvType;
     @BindView(R.id.tv_card)
     TextView tvCard;
+    @BindView(R.id.lv_pasenger)
+    LinearLayout lvPasenger;
     private String state;
 
     @Override
@@ -81,15 +83,15 @@ public class BuyActivity extends XActivity implements View.OnClickListener {
                 finish();
                 break;
             case R.id.tv_submit:
-                if (pasengerBean==null){
+                if (pasengerBean == null) {
                     CommonUtil.showMsg("请选择旅客");
-                }else {
+                } else {
 
                 }
                 break;
             case R.id.tv_chose:
                 Intent intent = new Intent(BuyActivity.this, ChosePasengerActivity.class);
-                startActivityForResult(intent,Constans.REQ_CHOSE_PASENGER);
+                startActivityForResult(intent, Constans.REQ_CHOSE_PASENGER);
                 break;
         }
     }
@@ -163,7 +165,9 @@ public class BuyActivity extends XActivity implements View.OnClickListener {
             tvName.setText(pasengerBean.getName());
             tvType.setText(pasengerBean.getType());
             tvCard.setText(pasengerBean.getPhone());
-        }else {
+            lvPasenger.setVisibility(View.VISIBLE);
+            tvChose.setText("更换乘客");
+        } else {
             XLog.e("异常");
         }
     }

@@ -21,9 +21,13 @@ import cn.droidlover.xrecyclerview.RecyclerAdapter;
 
 public class MyPasengerAdapter extends RecyclerAdapter<PasengerInfo.ListBean, MyPasengerAdapter.ViewHolder> {
 
-
+    private String tag="";
     private ItemOnclickListener listener;
 
+    public MyPasengerAdapter(Context context,String tag) {
+        super(context);
+        this.tag=tag;
+    }
     public MyPasengerAdapter(Context context) {
         super(context);
     }
@@ -36,16 +40,19 @@ public class MyPasengerAdapter extends RecyclerAdapter<PasengerInfo.ListBean, My
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        final PasengerInfo.ListBean bean=data.get(position);
+        final PasengerInfo.ListBean bean = data.get(position);
         holder.tvName.setText(bean.getName());
         holder.tvType.setText(bean.getType());
         holder.tvCard.setText(bean.getPhone());
         holder.tvDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.OnClickListener(position,bean.getId(),bean.getPasengerId());
+                listener.OnClickListener(position, bean.getId(), bean.getPasengerId());
             }
         });
+        if (tag.equals("chose")){
+            holder.tvDelete.setText("选择");
+        }
 
     }
 
@@ -58,16 +65,18 @@ public class MyPasengerAdapter extends RecyclerAdapter<PasengerInfo.ListBean, My
         TextView tvCard;
         @BindView(R.id.tv_delete)
         TextView tvDelete;
+
         public ViewHolder(View itemView) {
             super(itemView);
             KnifeKit.bind(this, itemView);
         }
     }
+
     /**
      * 定义监听
      */
     public interface ItemOnclickListener {
-        void OnClickListener(int position,Integer id,Integer pasengerId);
+        void OnClickListener(int position, Integer id, Integer pasengerId);
     }
 
     public void setListener(ItemOnclickListener listener) {

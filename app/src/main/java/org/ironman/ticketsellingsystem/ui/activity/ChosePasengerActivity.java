@@ -73,7 +73,7 @@ public class ChosePasengerActivity extends XActivity<PChosePasenger> implements 
         contentTitle.setText("选择旅客");
         contentAdd.setOnClickListener(this);
         contentBack.setOnClickListener(this);
-        adapter = new MyPasengerAdapter(this);
+        adapter = new MyPasengerAdapter(this,"chose");
         adapter.setListener(new MyPasengerAdapter.ItemOnclickListener() {
             @Override
             public void OnClickListener(int position, Integer Id, Integer pasengerId) {
