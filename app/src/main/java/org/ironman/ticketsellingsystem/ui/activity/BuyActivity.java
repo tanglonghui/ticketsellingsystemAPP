@@ -10,6 +10,7 @@ import org.ironman.ticketsellingsystem.R;
 import org.ironman.ticketsellingsystem.app.Constans;
 import org.ironman.ticketsellingsystem.model.PasengerInfo;
 import org.ironman.ticketsellingsystem.model.TrainInfo;
+import org.ironman.ticketsellingsystem.util.CommonUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -80,6 +81,11 @@ public class BuyActivity extends XActivity implements View.OnClickListener {
                 finish();
                 break;
             case R.id.tv_submit:
+                if (pasengerBean==null){
+                    CommonUtil.showMsg("请选择旅客");
+                }else {
+
+                }
                 break;
             case R.id.tv_chose:
                 Intent intent = new Intent(BuyActivity.this, ChosePasengerActivity.class);
