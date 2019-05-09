@@ -8,8 +8,10 @@ import android.widget.TextView;
 
 import org.ironman.ticketsellingsystem.R;
 import org.ironman.ticketsellingsystem.app.Constans;
+import org.ironman.ticketsellingsystem.model.ContentInfo;
 import org.ironman.ticketsellingsystem.model.PasengerInfo;
 import org.ironman.ticketsellingsystem.model.TrainInfo;
+import org.ironman.ticketsellingsystem.present.PBuy;
 import org.ironman.ticketsellingsystem.util.CommonUtil;
 
 import butterknife.BindView;
@@ -18,7 +20,7 @@ import butterknife.OnClick;
 import cn.droidlover.xdroidmvp.log.XLog;
 import cn.droidlover.xdroidmvp.mvp.XActivity;
 
-public class BuyActivity extends XActivity implements View.OnClickListener {
+public class BuyActivity extends XActivity<PBuy> implements View.OnClickListener {
 
 
     @BindView(R.id.content_back)
@@ -86,7 +88,7 @@ public class BuyActivity extends XActivity implements View.OnClickListener {
                 if (pasengerBean == null) {
                     CommonUtil.showMsg("请选择旅客");
                 } else {
-
+                    getP().buy(1);
                 }
                 break;
             case R.id.tv_chose:
@@ -122,8 +124,8 @@ public class BuyActivity extends XActivity implements View.OnClickListener {
     }
 
     @Override
-    public Object newP() {
-        return null;
+    public PBuy newP() {
+        return new PBuy();
     }
 
     @Override
@@ -169,6 +171,14 @@ public class BuyActivity extends XActivity implements View.OnClickListener {
             tvChose.setText("更换乘客");
         } else {
             XLog.e("异常");
+        }
+    }
+
+    public void data2view(ContentInfo data) {
+        if (data.isSuccess()) {
+            CommonUtil.showMsg("提交订单成功");
+        } else {
+            CommonUtil.showMsg(data.getMessage());
         }
     }
 }
