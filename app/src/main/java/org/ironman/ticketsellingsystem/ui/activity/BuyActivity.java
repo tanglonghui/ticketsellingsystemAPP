@@ -17,6 +17,8 @@ import org.ironman.ticketsellingsystem.util.CommonUtil;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.droidlover.xdroidmvp.cache.SharedPref;
+import cn.droidlover.xdroidmvp.kit.Kits;
 import cn.droidlover.xdroidmvp.log.XLog;
 import cn.droidlover.xdroidmvp.mvp.XActivity;
 
@@ -72,6 +74,8 @@ public class BuyActivity extends XActivity<PBuy> implements View.OnClickListener
     @BindView(R.id.lv_pasenger)
     LinearLayout lvPasenger;
     private String state;
+    private Integer price;
+    private String seat;
 
     @Override
     protected void oneLogin(String msg) {
@@ -88,7 +92,22 @@ public class BuyActivity extends XActivity<PBuy> implements View.OnClickListener
                 if (pasengerBean == null) {
                     CommonUtil.showMsg("请选择旅客");
                 } else {
-                    getP().buy(1);
+                    Integer id = SharedPref.getInstance(this).getInt(Constans.ID, 0);
+                    if (id != 0) {
+                        if (state.equals("0")){
+                            CommonUtil.showMsg("车票已售罄");
+                        }else {
+                            getP().buy(
+                                    pasengerBean.getPasengerId(),
+                                    id,
+                                    bean.getId(),
+                                    Kits.Date.getYmdhms(System.currentTimeMillis()),
+                                    seat,
+                                    price,
+                                    "0");
+                        }
+                    }
+
                 }
                 break;
             case R.id.tv_chose:
@@ -116,6 +135,13 @@ public class BuyActivity extends XActivity<PBuy> implements View.OnClickListener
         tvFirstPrice.setText("" + bean.getFirstSeatPrice() + "￥");
         tvSecond.setText(bean.getSecondSeat() + "张");
         tvSecondPrice.setText("" + bean.getSecondSeatPrice() + "￥");
+        price = bean.getBusinessPrice();
+        seat = "0";
+        if (Integer.parseInt(bean.getBusinessSeat()) > 0) {
+            state = "1";
+        } else {
+            state = "0";
+        }
     }
 
     @Override
@@ -139,22 +165,41 @@ public class BuyActivity extends XActivity<PBuy> implements View.OnClickListener
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.lv_business:
-                state = "1";
                 lvBusiness.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
                 lvFirst.setBackgroundColor(getResources().getColor(R.color.app_bg));
                 lvSecond.setBackgroundColor(getResources().getColor(R.color.app_bg));
+                price = bean.getBusinessPrice();
+                seat = "0";
+                if (Integer.parseInt(bean.getBusinessSeat()) > 0) {
+                    state = "1";
+                } else {
+                    state = "0";
+                }
                 break;
             case R.id.lv_first:
-                state = "2";
                 lvBusiness.setBackgroundColor(getResources().getColor(R.color.app_bg));
                 lvFirst.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
                 lvSecond.setBackgroundColor(getResources().getColor(R.color.app_bg));
+                price = bean.getFirstSeatPrice();
+                seat = "1";
+                if (Integer.parseInt(bean.getFirstSeat()) > 0) {
+                    state = "1";
+                } else {
+                    state = "0";
+                }
                 break;
             case R.id.lv_second:
                 state = "3";
                 lvBusiness.setBackgroundColor(getResources().getColor(R.color.app_bg));
                 lvFirst.setBackgroundColor(getResources().getColor(R.color.app_bg));
                 lvSecond.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                price = bean.getSecondSeatPrice();
+                seat = "2";
+                if (Integer.parseInt(bean.getSecondSeat()) > 0) {
+                    state = "1";
+                } else {
+                    state = "0";
+                }
                 break;
         }
     }

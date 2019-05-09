@@ -5,6 +5,7 @@ import org.ironman.ticketsellingsystem.net.Api;
 import org.ironman.ticketsellingsystem.ui.activity.BuyActivity;
 import org.ironman.ticketsellingsystem.ui.activity.ChosePasengerActivity;
 
+import java.util.Date;
 import java.util.HashMap;
 
 import cn.droidlover.xdroidmvp.mvp.XPresent;
@@ -17,9 +18,15 @@ import cn.droidlover.xdroidmvp.net.XApi;
  */
 
 public class PBuy extends XPresent<BuyActivity> {
-    public void buy(Integer userId) {
+    public void buy(Integer pasengerId,Integer userId,Integer trainId,String orderTime,String seat,Integer price,String state) {
         HashMap<String, Object> map = new HashMap<>();
+        map.put("pasengerId", pasengerId);
         map.put("userId", userId);
+        map.put("trainId", trainId);
+        map.put("orderTime", orderTime);
+        map.put("seat", seat);
+        map.put("price", price);
+        map.put("state", state);
         Api.getOrderService().addOrder(map)
                 .compose(XApi.<ContentInfo>getApiTransformer()) //统一异常处理
                 .compose(XApi.<ContentInfo>getScheduler()) //线程调度
