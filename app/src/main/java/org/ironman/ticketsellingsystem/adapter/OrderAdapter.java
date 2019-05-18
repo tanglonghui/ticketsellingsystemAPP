@@ -40,8 +40,8 @@ public class OrderAdapter extends RecyclerAdapter<OrderInfo.ListEntity, OrderAda
         holder.tvStartPlace.setText(bean.getStartPlace());
         holder.tvStartTime.setText(bean.getStartTime());
         holder.tvTrainCard.setText(bean.getTrainCard());
-        holder.tvPasenger.setText(bean.getName());
-        holder.tvOrderId.setText(bean.getId());
+        holder.tvPasenger.setText("乘客："+bean.getName());
+        holder.tvOrderId.setText("订单号："+bean.getId());
         if (bean.getState().equals("0")){
             holder.tvJump.setVisibility(View.VISIBLE);
         }else {

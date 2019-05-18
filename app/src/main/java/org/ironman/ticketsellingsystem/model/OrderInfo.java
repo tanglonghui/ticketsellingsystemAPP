@@ -121,22 +121,22 @@ public class OrderInfo implements IModel {
          * state : 0
          * endTime : 16:22
          */
-        private int trainId;
+        private Integer trainId;
         private String startPlace;
         private String trainCard;
-        private int userId;
+        private Integer userId;
         private String endPlace;
         private String seat;
         private String orderTime;
         private String price;
-        private int pasengerId;
+        private Integer pasengerId;
         private String name;
         private String startTime;
-        private int id;
+        private Integer id;
         private String state;
         private String endTime;
 
-        public void setTrainId(int trainId) {
+        public void setTrainId(Integer trainId) {
             this.trainId = trainId;
         }
 
@@ -148,7 +148,7 @@ public class OrderInfo implements IModel {
             this.trainCard = trainCard;
         }
 
-        public void setUserId(int userId) {
+        public void setUserId(Integer userId) {
             this.userId = userId;
         }
 
@@ -168,7 +168,7 @@ public class OrderInfo implements IModel {
             this.price = price;
         }
 
-        public void setPasengerId(int pasengerId) {
+        public void setPasengerId(Integer pasengerId) {
             this.pasengerId = pasengerId;
         }
 
@@ -180,7 +180,7 @@ public class OrderInfo implements IModel {
             this.startTime = startTime;
         }
 
-        public void setId(int id) {
+        public void setId(Integer id) {
             this.id = id;
         }
 
@@ -192,7 +192,7 @@ public class OrderInfo implements IModel {
             this.endTime = endTime;
         }
 
-        public int getTrainId() {
+        public Integer getTrainId() {
             return trainId;
         }
 
@@ -204,7 +204,7 @@ public class OrderInfo implements IModel {
             return trainCard;
         }
 
-        public int getUserId() {
+        public Integer getUserId() {
             return userId;
         }
 
@@ -224,7 +224,7 @@ public class OrderInfo implements IModel {
             return price;
         }
 
-        public int getPasengerId() {
+        public Integer getPasengerId() {
             return pasengerId;
         }
 
@@ -236,7 +236,7 @@ public class OrderInfo implements IModel {
             return startTime;
         }
 
-        public int getId() {
+        public Integer getId() {
             return id;
         }
 

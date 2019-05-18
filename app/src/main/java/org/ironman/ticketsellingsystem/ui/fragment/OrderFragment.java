@@ -95,7 +95,7 @@ public class OrderFragment extends XFragment<POrder> implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_historical_trip:
-                state = "0";
+                state = "2";
                 tvUnpaid.setTextColor(getResources().getColor(R.color.white));
                 tvNoTrip.setTextColor(getResources().getColor(R.color.white));
                 tvHistoricalTrip.setTextColor(getResources().getColor(R.color.x_red));
@@ -109,7 +109,7 @@ public class OrderFragment extends XFragment<POrder> implements View.OnClickList
                 getP().getOrder(id, state);
                 break;
             case R.id.tv_unpaid:
-                state = "2";
+                state = "0";
                 tvUnpaid.setTextColor(getResources().getColor(R.color.x_red));
                 tvNoTrip.setTextColor(getResources().getColor(R.color.white));
                 tvHistoricalTrip.setTextColor(getResources().getColor(R.color.white));
