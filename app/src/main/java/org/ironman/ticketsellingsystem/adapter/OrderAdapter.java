@@ -1,6 +1,7 @@
 package org.ironman.ticketsellingsystem.adapter;
 
 import android.content.Context;
+import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,7 @@ import cn.droidlover.xrecyclerview.RecyclerAdapter;
 public class OrderAdapter extends RecyclerAdapter<OrderInfo.ListEntity, OrderAdapter.ViewHolder> {
 
 
+
     public OrderAdapter(Context context) {
         super(context);
     }
@@ -35,16 +37,17 @@ public class OrderAdapter extends RecyclerAdapter<OrderInfo.ListEntity, OrderAda
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         OrderInfo.ListEntity bean = data.get(position);
+        holder.tvOrderTime.setText("订单时间："+bean.getOrderTime());
         holder.tvEndPlace.setText(bean.getEndPlace());
         holder.tvEndTime.setText(bean.getEndTime());
         holder.tvStartPlace.setText(bean.getStartPlace());
         holder.tvStartTime.setText(bean.getStartTime());
         holder.tvTrainCard.setText(bean.getTrainCard());
-        holder.tvPasenger.setText("乘客："+bean.getName());
-        holder.tvOrderId.setText("订单号："+bean.getId());
-        if (bean.getState().equals("0")){
+        holder.tvPasenger.setText("乘客：" + bean.getName());
+        holder.tvOrderId.setText("订单号：" + bean.getId());
+        if (bean.getState().equals("0")) {
             holder.tvJump.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             holder.tvJump.setVisibility(View.INVISIBLE);
         }
 
@@ -67,6 +70,8 @@ public class OrderAdapter extends RecyclerAdapter<OrderInfo.ListEntity, OrderAda
         TextView tvPasenger;
         @BindView(R.id.tv_jump)
         TextView tvJump;
+        @BindView(R.id.tv_order_time)
+        TextView tvOrderTime;
 
         public ViewHolder(View itemView) {
             super(itemView);

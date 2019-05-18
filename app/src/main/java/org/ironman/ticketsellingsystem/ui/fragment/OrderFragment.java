@@ -13,7 +13,6 @@ import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import org.ironman.ticketsellingsystem.R;
 import org.ironman.ticketsellingsystem.adapter.OrderAdapter;
 import org.ironman.ticketsellingsystem.app.Constans;
-import org.ironman.ticketsellingsystem.model.ContentInfo;
 import org.ironman.ticketsellingsystem.model.OrderInfo;
 import org.ironman.ticketsellingsystem.present.POrder;
 import org.ironman.ticketsellingsystem.util.CommonUtil;
@@ -43,6 +42,8 @@ public class OrderFragment extends XFragment<POrder> implements View.OnClickList
     Unbinder unbinder;
 
     OrderAdapter adapter;
+    @BindView(R.id.tv_order_time_tip)
+    TextView tvOrderTimeTip;
     private String state;
     Integer id;
 
@@ -65,6 +66,7 @@ public class OrderFragment extends XFragment<POrder> implements View.OnClickList
         state = "0";
         id = SharedPref.getInstance(getContext()).getInt(Constans.ID, 0);
         getP().getOrder(id, state);
+        tvOrderTimeTip.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -94,12 +96,13 @@ public class OrderFragment extends XFragment<POrder> implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.tv_historical_trip:
-                state = "2";
-                tvUnpaid.setTextColor(getResources().getColor(R.color.white));
+            case R.id.tv_unpaid:
+                state = "0";
+                tvUnpaid.setTextColor(getResources().getColor(R.color.x_red));
                 tvNoTrip.setTextColor(getResources().getColor(R.color.white));
-                tvHistoricalTrip.setTextColor(getResources().getColor(R.color.x_red));
+                tvHistoricalTrip.setTextColor(getResources().getColor(R.color.white));
                 getP().getOrder(id, state);
+                tvOrderTimeTip.setVisibility(View.VISIBLE);
                 break;
             case R.id.tv_no_trip:
                 state = "1";
@@ -107,13 +110,15 @@ public class OrderFragment extends XFragment<POrder> implements View.OnClickList
                 tvNoTrip.setTextColor(getResources().getColor(R.color.x_red));
                 tvHistoricalTrip.setTextColor(getResources().getColor(R.color.white));
                 getP().getOrder(id, state);
+                tvOrderTimeTip.setVisibility(View.GONE);
                 break;
-            case R.id.tv_unpaid:
-                state = "0";
-                tvUnpaid.setTextColor(getResources().getColor(R.color.x_red));
+            case R.id.tv_historical_trip:
+                state = "2";
+                tvUnpaid.setTextColor(getResources().getColor(R.color.white));
                 tvNoTrip.setTextColor(getResources().getColor(R.color.white));
-                tvHistoricalTrip.setTextColor(getResources().getColor(R.color.white));
+                tvHistoricalTrip.setTextColor(getResources().getColor(R.color.x_red));
                 getP().getOrder(id, state);
+                tvOrderTimeTip.setVisibility(View.GONE);
                 break;
         }
     }
