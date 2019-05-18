@@ -1,6 +1,7 @@
 package org.ironman.ticketsellingsystem.net;
 
 import org.ironman.ticketsellingsystem.model.ContentInfo;
+import org.ironman.ticketsellingsystem.model.OrderInfo;
 import org.ironman.ticketsellingsystem.model.PasengerInfo;
 
 import java.util.Map;
@@ -21,16 +22,25 @@ public interface OrderService {
     @FormUrlEncoded
     @POST("/addOrder")
     Flowable<ContentInfo> addOrder(@FieldMap Map<String, Object> map);
+
     /**
      * 改变订单状态
      */
     @FormUrlEncoded
     @POST("/changOrderState")
     Flowable<ContentInfo> changOrderState(@FieldMap Map<String, Object> map);
+
     /**
      * 拿到旅客列表
      */
     @FormUrlEncoded
     @POST("/myPasengerList")
     Flowable<PasengerInfo> getPasenger(@FieldMap Map<String, Object> map);
+
+    /**
+     * 根据状态获得订单
+     */
+    @FormUrlEncoded
+    @POST("/orderList")
+    Flowable<OrderInfo> getOrder(@FieldMap Map<String, Object> map);
 }

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.ironman.ticketsellingsystem.R;
+import org.ironman.ticketsellingsystem.model.OrderInfo;
 
 import butterknife.BindView;
 import cn.droidlover.xdroidmvp.kit.KnifeKit;
@@ -18,7 +19,7 @@ import cn.droidlover.xrecyclerview.RecyclerAdapter;
  * @describe TODO  也许我应该把它设置成一个模板。但...
  */
 
-public class OrderAdapter extends RecyclerAdapter<String, OrderAdapter.ViewHolder> {
+public class OrderAdapter extends RecyclerAdapter<OrderInfo.ListEntity, OrderAdapter.ViewHolder> {
 
 
     public OrderAdapter(Context context) {
@@ -33,6 +34,19 @@ public class OrderAdapter extends RecyclerAdapter<String, OrderAdapter.ViewHolde
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        OrderInfo.ListEntity bean = data.get(position);
+        holder.tvEndPlace.setText(bean.getEndPlace());
+        holder.tvEndTime.setText(bean.getEndTime());
+        holder.tvStartPlace.setText(bean.getStartPlace());
+        holder.tvStartTime.setText(bean.getStartTime());
+        holder.tvTrainCard.setText(bean.getTrainCard());
+        holder.tvPasenger.setText(bean.getName());
+        holder.tvOrderId.setText(bean.getId());
+        if (bean.getState().equals("0")){
+            holder.tvJump.setVisibility(View.VISIBLE);
+        }else {
+            holder.tvJump.setVisibility(View.INVISIBLE);
+        }
 
     }
 

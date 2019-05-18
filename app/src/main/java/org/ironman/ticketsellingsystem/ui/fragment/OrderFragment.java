@@ -12,12 +12,16 @@ import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import org.ironman.ticketsellingsystem.R;
 import org.ironman.ticketsellingsystem.adapter.OrderAdapter;
+import org.ironman.ticketsellingsystem.app.Constans;
 import org.ironman.ticketsellingsystem.model.ContentInfo;
+import org.ironman.ticketsellingsystem.model.OrderInfo;
+import org.ironman.ticketsellingsystem.present.POrder;
 import org.ironman.ticketsellingsystem.util.CommonUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import cn.droidlover.xdroidmvp.cache.SharedPref;
 import cn.droidlover.xdroidmvp.mvp.XFragment;
 
 /**
@@ -26,7 +30,7 @@ import cn.droidlover.xdroidmvp.mvp.XFragment;
  */
 
 
-public class OrderFragment extends XFragment implements View.OnClickListener {
+public class OrderFragment extends XFragment<POrder> implements View.OnClickListener {
 
     @BindView(R.id.tv_unpaid)
     TextView tvUnpaid;
@@ -39,7 +43,8 @@ public class OrderFragment extends XFragment implements View.OnClickListener {
     Unbinder unbinder;
 
     OrderAdapter adapter;
-    private String state = "1";
+    private String state;
+    Integer id;
 
     @Override
     protected void oneLogin(String msg) {
@@ -57,7 +62,9 @@ public class OrderFragment extends XFragment implements View.OnClickListener {
         adapter = new OrderAdapter(getActivity());
         xvRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
         xvRecycler.setAdapter(adapter);
-
+        state = "0";
+        id = SharedPref.getInstance(getContext()).getInt(Constans.ID, 0);
+        getP().getOrder(id, state);
     }
 
     @Override
@@ -66,8 +73,8 @@ public class OrderFragment extends XFragment implements View.OnClickListener {
     }
 
     @Override
-    public Object newP() {
-        return null;
+    public POrder newP() {
+        return new POrder();
     }
 
     @Override
@@ -88,30 +95,33 @@ public class OrderFragment extends XFragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_historical_trip:
-                state = "3";
+                state = "0";
                 tvUnpaid.setTextColor(getResources().getColor(R.color.white));
                 tvNoTrip.setTextColor(getResources().getColor(R.color.white));
                 tvHistoricalTrip.setTextColor(getResources().getColor(R.color.x_red));
+                getP().getOrder(id, state);
                 break;
             case R.id.tv_no_trip:
-                state = "2";
+                state = "1";
                 tvUnpaid.setTextColor(getResources().getColor(R.color.white));
                 tvNoTrip.setTextColor(getResources().getColor(R.color.x_red));
                 tvHistoricalTrip.setTextColor(getResources().getColor(R.color.white));
+                getP().getOrder(id, state);
                 break;
             case R.id.tv_unpaid:
-                state = "1";
+                state = "2";
                 tvUnpaid.setTextColor(getResources().getColor(R.color.x_red));
                 tvNoTrip.setTextColor(getResources().getColor(R.color.white));
                 tvHistoricalTrip.setTextColor(getResources().getColor(R.color.white));
+                getP().getOrder(id, state);
                 break;
         }
     }
 
-    public void data2view(ContentInfo data) {
+    public void data2view(OrderInfo data) {
         xvRecycler.refreshComplete();
         if (data.isSuccess()) {
-            adapter.setData((String[]) data.getList());
+            adapter.setData(data.getList());
         } else {
             CommonUtil.showMsg(data.getMessage());
         }
