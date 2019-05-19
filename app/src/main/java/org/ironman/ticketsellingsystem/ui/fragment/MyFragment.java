@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import org.ironman.ticketsellingsystem.MainActivity;
 import org.ironman.ticketsellingsystem.R;
+import org.ironman.ticketsellingsystem.app.Constans;
+import org.ironman.ticketsellingsystem.event.MyFragmentReflashEvent;
 import org.ironman.ticketsellingsystem.ui.activity.ChangePasswordActivity;
 import org.ironman.ticketsellingsystem.ui.activity.ChangePersonalDataActivity;
 import org.ironman.ticketsellingsystem.ui.activity.MyPasengerActivity;
@@ -16,6 +18,8 @@ import org.ironman.ticketsellingsystem.ui.activity.MyPasengerActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import cn.droidlover.xdroidmvp.cache.SharedPref;
+import cn.droidlover.xdroidmvp.event.BusProvider;
 import cn.droidlover.xdroidmvp.mvp.XFragment;
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -37,13 +41,26 @@ public class MyFragment extends XFragment implements View.OnClickListener {
     @BindView(R.id.tv_logout)
     TextView tvLogout;
     Unbinder unbinder;
-
+    private SharedPref sp;
     @Override
     public void initData(Bundle savedInstanceState) {
         tvLogout.setOnClickListener(this);
         tvChangePassword.setOnClickListener(this);
         tvAddPasenger.setOnClickListener(this);
         rlHead.setOnClickListener(this);
+        sp = SharedPref.getInstance(context);
+        tvAccount.setText("账号："+sp.getString(Constans.ACCOUNT,""));
+        tvName.setText(sp.getString(Constans.NAME,""));
+        BusProvider.getBus()
+                .toFlowable(MyFragmentReflashEvent.class)
+                .subscribe(new io.reactivex.functions.Consumer<MyFragmentReflashEvent>() {
+                    @Override
+                    public void accept(MyFragmentReflashEvent orderFragmentReflashEvent) throws Exception {
+                        tvAccount.setText("账号："+sp.getString(Constans.ACCOUNT,""));
+                        tvName.setText(sp.getString(Constans.NAME,""));
+                    }
+                });
+
     }
 
     @Override

@@ -3,10 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/app_bg"
     android:orientation="vertical"
-    tools:context="org.ironman.ticketsellingsystem.ui.activity.ChangePersonalDataActivity">
+    tools:context="org.ironman.ticketsellingsystem.ui.activity.ChangePasswordActivity">
 
-    <include layout="@layout/content_toolbar" />
+    <include layout="@layout/content_toolbar"></include>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -15,110 +16,182 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-
-
-            <RelativeLayout style="@style/PersonalDataRelativeLayoutStyleContainer">
-
-                <TextView
-                    style="@style/PersonalDataTextViewStyleLeft"
-                    android:text="姓名" />
-
-                <TextView
-                    android:id="@+id/tv_userName"
-                    style="@style/PersonalDataTextViewStyleRight"
-                    android:text="" />
-
-
-            </RelativeLayout>
-
-            <RelativeLayout style="@style/PersonalDataRelativeLayoutStyleContainer">
-
-                <TextView
-                    style="@style/PersonalDataTextViewStyleLeft"
-                    android:text="账户" />
-
-                <TextView
-                    android:id="@+id/tv_loginName"
-                    style="@style/PersonalDataTextViewStyleRight"
-                    android:text="" />
-
-            </RelativeLayout>
+            android:orientation="vertical"
+            android:padding="24dp">
 
             <RelativeLayout
-                style="@style/PersonalDataRelativeLayoutStyleContainer"
-                android:layout_marginTop="8dp">
+                android:id="@+id/rl_head"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/item_shape_statistics">
+
+                <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/iv_head"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:src="@mipmap/my_logo"
+                    app:civ_border_color="@color/colorPrimary"
+                    app:civ_border_width="2dp" />
 
                 <TextView
-                    style="@style/PersonalDataTextViewStyleLeft"
-                    android:text="性别" />
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_toRightOf="@+id/iv_head"
+                    android:text="安那"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
 
                 <TextView
-                    android:id="@+id/tv_sex"
-                    style="@style/PersonalDataTextViewStyleRight"
-                    android:text="" />
+                    android:id="@+id/tv_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_name"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_toRightOf="@+id/iv_head"
+                    android:text="账号：teacher"
+                    android:textColor="#8d9097"
+                    android:textSize="12sp" />
 
-                <EditText
-                    android:id="@+id/et_sex"
-                    style="@style/PersonalDataTextViewStyleRight"
-                    android:background="@null"
-                    android:visibility="invisible" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="12sp"
+                    android:src="@mipmap/icon_gd"
+                    android:visibility="gone" />
+
             </RelativeLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/item_shape_statistics"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp">
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:text="姓名"
+                        android:textColor="#333333" />
+
+                    <EditText
+                        android:id="@+id/et_name"
+                        style="@style/EditTextStyle"
+                        android:hint="编辑姓名" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp">
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:text="年龄"
+                        android:textColor="#333333" />
+
+                    <EditText
+                        android:id="@+id/et_age"
+                        style="@style/EditTextStyle"
+                        android:inputType="number"
+                        android:hint="编辑年龄" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp">
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:text="电话"
+                        android:textColor="#333333" />
+
+                    <EditText
+                        android:id="@+id/et_phone"
+                        style="@style/EditTextStyle"
+                        android:inputType="number"
+                        android:hint="编辑电话" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp">
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:text="身份证"
+                        android:textColor="#333333" />
+
+                    <EditText
+                        android:id="@+id/et_id_card"
+                        style="@style/EditTextStyle"
+                        android:inputType="number"
+                        android:hint="编辑身份证" />
+                </LinearLayout>
+
+                <View
+                    style="@style/LineStyle"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
 
 
-            <RelativeLayout style="@style/PersonalDataRelativeLayoutStyleContainer">
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="性别"
+                        android:textColor="#333333" />
 
-                <TextView
-                    style="@style/PersonalDataTextViewStyleLeft"
-                    android:text="年龄" />
+                    <TextView
+                        android:id="@+id/tv_sex"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:paddingLeft="15dp"
+                        android:text="男"
+                        android:textColor="#333333"
+                        android:textSize="15sp" />
+                </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tv_age"
-                    style="@style/PersonalDataTextViewStyleRight"
-                    android:minLines="3"
-                    android:text="" />
-
-                <EditText
-                    android:id="@+id/et_age"
-                    style="@style/PersonalDataTextViewStyleRight"
-                    android:background="@null"
-                    android:visibility="invisible" />
-            </RelativeLayout>
-
-
-
+            </LinearLayout>
 
 
-            <RelativeLayout style="@style/PersonalDataRelativeLayoutStyleContainer">
-
-                <TextView
-                    style="@style/PersonalDataTextViewStyleLeft"
-                    android:text="联系电话" />
-
-                <TextView
-                    android:id="@+id/tv_phone"
-                    style="@style/PersonalDataTextViewStyleRight"
-                    android:text="" />
-
-                <EditText
-                    android:id="@+id/et_phone"
-                    style="@style/PersonalDataTextViewStyleRight"
-                    android:background="@null"
-                    android:visibility="invisible" />
-            </RelativeLayout>
-
-            <Button
-                android:id="@+id/btn_commit"
-                android:layout_width="200dp"
-                android:layout_height="32dp"
-                android:layout_centerHorizontal="true"
+            <TextView
+                android:id="@+id/tv_save"
+                style="@style/ButtonStyle"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:background="#eba600"
-                android:text="确定"
-                android:textColor="#ffffff"
-                android:visibility="gone" />
+                android:layout_margin="16dp"
+                android:text="保存" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

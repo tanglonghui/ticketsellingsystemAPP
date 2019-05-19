@@ -57,7 +57,7 @@ public class ChangePasswordActivity extends XActivity<PChangPassword> implements
     @BindView(R.id.tv_login)
     TextView tvLogin;//提交按钮
     private Validator validator;
-
+    private SharedPref sp;
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -78,7 +78,9 @@ public class ChangePasswordActivity extends XActivity<PChangPassword> implements
         validator = new Validator(this);
         validator.setValidationListener(this);
         tvLogin.setOnClickListener(this);
-
+        sp = SharedPref.getInstance(context);
+        tvAccount.setText("账号："+sp.getString(Constans.ACCOUNT,""));
+        tvName.setText(sp.getString(Constans.NAME,""));
     }
 
     @Override

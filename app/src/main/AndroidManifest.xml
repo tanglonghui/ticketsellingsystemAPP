@@ -41,7 +41,9 @@
         <activity android:name=".ui.activity.RegisterActivity" />
         <activity android:name=".ui.activity.ForgetActivity" />
         <activity android:name=".ui.activity.ChangePasswordActivity" />
-        <activity android:name=".ui.activity.ChangePersonalDataActivity" />
+        <activity android:name=".ui.activity.ChangePersonalDataActivity"
+            android:windowSoftInputMode="stateHidden"
+            />
         <activity android:name=".ui.activity.PersonalDataActivity" />
         <activity android:name=".ui.activity.CityPickerActivity" />
         <activity android:name=".ui.activity.TrainListActivity" />
