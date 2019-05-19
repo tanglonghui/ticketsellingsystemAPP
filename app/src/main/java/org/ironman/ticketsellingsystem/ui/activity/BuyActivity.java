@@ -73,6 +73,8 @@ public class BuyActivity extends XActivity<PBuy> implements View.OnClickListener
     TextView tvCard;
     @BindView(R.id.lv_pasenger)
     LinearLayout lvPasenger;
+    @BindView(R.id.tv_go_home)
+    TextView tvGoHome;
     private String state;
     private Integer price;
     private String seat;
@@ -94,9 +96,9 @@ public class BuyActivity extends XActivity<PBuy> implements View.OnClickListener
                 } else {
                     Integer id = SharedPref.getInstance(this).getInt(Constans.ID, 0);
                     if (id != 0) {
-                        if (state.equals("0")){
+                        if (state.equals("0")) {
                             CommonUtil.showMsg("车票已售罄");
-                        }else {
+                        } else {
                             getP().buy(
                                     pasengerBean.getPasengerId(),
                                     id,
@@ -114,14 +116,20 @@ public class BuyActivity extends XActivity<PBuy> implements View.OnClickListener
                 Intent intent = new Intent(BuyActivity.this, ChosePasengerActivity.class);
                 startActivityForResult(intent, Constans.REQ_CHOSE_PASENGER);
                 break;
+            case R.id.tv_go_home:
+                HomeActivity.launch(context);
+                finish();
+                break;
         }
     }
 
     @Override
     public void initData(Bundle savedInstanceState) {
         contentBack.setOnClickListener(this);
+        contentTitle.setText("订单");
         tvSubmit.setOnClickListener(this);
         tvChose.setOnClickListener(this);
+        tvGoHome.setOnClickListener(this);
         bean = (TrainInfo.ListEntity) getIntent().getSerializableExtra("TrainInfoBean");
         XLog.e("" + bean.getId());
         tvTrainCard.setText(bean.getTrainCard());
@@ -222,6 +230,10 @@ public class BuyActivity extends XActivity<PBuy> implements View.OnClickListener
     public void data2view(ContentInfo data) {
         if (data.isSuccess()) {
             CommonUtil.showMsg("提交订单成功");
+            Intent intent = new Intent(BuyActivity.this, PayActivity.class);
+            intent.putExtra("orderId", Integer.parseInt(data.getMessage()));
+            XLog.e(data.getMessage());
+            startActivity(intent);
         } else {
             CommonUtil.showMsg(data.getMessage());
         }

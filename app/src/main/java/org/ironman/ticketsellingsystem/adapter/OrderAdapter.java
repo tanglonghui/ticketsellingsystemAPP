@@ -1,7 +1,6 @@
 package org.ironman.ticketsellingsystem.adapter;
 
 import android.content.Context;
-import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +21,7 @@ import cn.droidlover.xrecyclerview.RecyclerAdapter;
 
 public class OrderAdapter extends RecyclerAdapter<OrderInfo.ListEntity, OrderAdapter.ViewHolder> {
 
-
+    private ItemOnclickListener listener;
 
     public OrderAdapter(Context context) {
         super(context);
@@ -36,7 +35,7 @@ public class OrderAdapter extends RecyclerAdapter<OrderInfo.ListEntity, OrderAda
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        OrderInfo.ListEntity bean = data.get(position);
+        final OrderInfo.ListEntity bean = data.get(position);
         holder.tvOrderTime.setText("订单时间："+bean.getOrderTime());
         holder.tvEndPlace.setText(bean.getEndPlace());
         holder.tvEndTime.setText(bean.getEndTime());
@@ -47,6 +46,12 @@ public class OrderAdapter extends RecyclerAdapter<OrderInfo.ListEntity, OrderAda
         holder.tvOrderId.setText("订单号：" + bean.getId());
         if (bean.getState().equals("0")) {
             holder.tvJump.setVisibility(View.VISIBLE);
+            holder.tvJump.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.OnClickListener(bean);
+                }
+            });
         } else {
             holder.tvJump.setVisibility(View.INVISIBLE);
         }
@@ -77,5 +82,15 @@ public class OrderAdapter extends RecyclerAdapter<OrderInfo.ListEntity, OrderAda
             super(itemView);
             KnifeKit.bind(this, itemView);
         }
+    }
+    /**
+     * 定义监听
+     */
+    public interface ItemOnclickListener {
+        void OnClickListener(OrderInfo.ListEntity bean);
+    }
+
+    public void setListener(OrderAdapter.ItemOnclickListener listener) {
+        this.listener = listener;
     }
 }

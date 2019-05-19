@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="org.ironman.ticketsellingsystem.ui.activity.PayActivity">
-<TextView
+<include layout="@layout/content_toolbar"/>
+    <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:textSize="30sp"
@@ -33,5 +34,5 @@
         style="@style/ButtonStyle"
         android:layout_gravity="center"
         android:layout_margin="4dp"
-        android:text="取消支付" />
+        android:text="取消订单" />
 </LinearLayout>

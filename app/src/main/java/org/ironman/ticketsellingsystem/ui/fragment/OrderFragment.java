@@ -1,6 +1,7 @@
 package org.ironman.ticketsellingsystem.ui.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
@@ -13,14 +14,20 @@ import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import org.ironman.ticketsellingsystem.R;
 import org.ironman.ticketsellingsystem.adapter.OrderAdapter;
 import org.ironman.ticketsellingsystem.app.Constans;
+import org.ironman.ticketsellingsystem.event.OrderFragmentReflashEvent;
 import org.ironman.ticketsellingsystem.model.OrderInfo;
 import org.ironman.ticketsellingsystem.present.POrder;
+import org.ironman.ticketsellingsystem.ui.activity.PayActivity;
 import org.ironman.ticketsellingsystem.util.CommonUtil;
+
+import java.util.function.Consumer;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import cn.droidlover.xdroidmvp.cache.SharedPref;
+import cn.droidlover.xdroidmvp.event.BusProvider;
+import cn.droidlover.xdroidmvp.log.XLog;
 import cn.droidlover.xdroidmvp.mvp.XFragment;
 
 /**
@@ -67,6 +74,36 @@ public class OrderFragment extends XFragment<POrder> implements View.OnClickList
         id = SharedPref.getInstance(getContext()).getInt(Constans.ID, 0);
         getP().getOrder(id, state);
         tvOrderTimeTip.setVisibility(View.VISIBLE);
+        xvRecycler.setLoadingListener(new XRecyclerView.LoadingListener() {
+            @Override
+            public void onRefresh() {
+                getP().getOrder(id, state);
+            }
+
+            @Override
+            public void onLoadMore() {
+
+            }
+        });
+        xvRecycler.setLoadingMoreEnabled(false);
+        adapter.setListener(new OrderAdapter.ItemOnclickListener() {
+            @Override
+            public void OnClickListener(OrderInfo.ListEntity bean) {
+                Intent intent=new Intent(getContext(),PayActivity.class);
+                intent.putExtra("orderId",bean.getId());
+                XLog.e(""+bean.getId());
+                startActivity(intent);
+            }
+        });
+        BusProvider.getBus()
+                .toFlowable(OrderFragmentReflashEvent.class)
+                .subscribe(new io.reactivex.functions.Consumer<OrderFragmentReflashEvent>() {
+                    @Override
+                    public void accept(OrderFragmentReflashEvent orderFragmentReflashEvent) throws Exception {
+                        getP().getOrder(id, state);
+                    }
+                });
+
     }
 
     @Override
