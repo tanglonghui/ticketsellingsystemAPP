@@ -2,7 +2,6 @@ package org.ironman.ticketsellingsystem.ui.activity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
@@ -22,11 +21,11 @@ import org.ironman.ticketsellingsystem.util.TimeUtil;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 import butterknife.BindView;
 import cn.droidlover.xdroidmvp.kit.Kits;
 import cn.droidlover.xdroidmvp.mvp.XActivity;
+import cn.droidlover.xdroidmvp.net.NetError;
 
 
 /**
@@ -89,7 +88,7 @@ public class TrainListActivity extends XActivity<PTrainList> implements View.OnC
             }
             adapter.setData(mdata);
         } else {
-            getP().getTrainList(startPlace, endPlace, date, isFast);
+//            getP().getTrainList(startPlace, endPlace, date, isFast);
         }
         xvRecycler.setLoadingMoreEnabled(false);
         tvDate.setOnClickListener(this);
@@ -196,5 +195,21 @@ public class TrainListActivity extends XActivity<PTrainList> implements View.OnC
         datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
         datePickerDialog.show();
 
+    }
+    public void cancelLoading(){
+        xvRecycler.refreshComplete();
+        xvRecycler.loadMoreComplete();
+    }
+
+    @Override
+    public void showError(NetError error) {
+        super.showError(error);
+        cancelLoading();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getP().getTrainList(startPlace, endPlace, date, isFast);
     }
 }

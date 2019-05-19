@@ -1,9 +1,7 @@
 package org.ironman.ticketsellingsystem.present;
 
-import org.ironman.ticketsellingsystem.model.ContentInfo;
 import org.ironman.ticketsellingsystem.model.OrderInfo;
 import org.ironman.ticketsellingsystem.net.Api;
-import org.ironman.ticketsellingsystem.ui.activity.BuyActivity;
 import org.ironman.ticketsellingsystem.ui.fragment.OrderFragment;
 
 import java.util.HashMap;

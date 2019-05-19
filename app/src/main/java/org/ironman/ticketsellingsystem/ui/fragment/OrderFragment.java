@@ -29,6 +29,7 @@ import cn.droidlover.xdroidmvp.cache.SharedPref;
 import cn.droidlover.xdroidmvp.event.BusProvider;
 import cn.droidlover.xdroidmvp.log.XLog;
 import cn.droidlover.xdroidmvp.mvp.XFragment;
+import cn.droidlover.xdroidmvp.net.NetError;
 
 /**
  * @data Created by Archer on 2019/4/18.
@@ -72,7 +73,7 @@ public class OrderFragment extends XFragment<POrder> implements View.OnClickList
         xvRecycler.setAdapter(adapter);
         state = "0";
         id = SharedPref.getInstance(getContext()).getInt(Constans.ID, 0);
-        getP().getOrder(id, state);
+//        getP().getOrder(id, state);
         tvOrderTimeTip.setVisibility(View.VISIBLE);
         xvRecycler.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
@@ -167,5 +168,20 @@ public class OrderFragment extends XFragment<POrder> implements View.OnClickList
         } else {
             CommonUtil.showMsg(data.getMessage());
         }
+    }
+    public void cancelLoading(){
+        xvRecycler.refreshComplete();
+        xvRecycler.loadMoreComplete();
+    }
+    @Override
+    public void showError(NetError error) {
+        super.showError(error);
+        cancelLoading();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getP().getOrder(id, state);
     }
 }
